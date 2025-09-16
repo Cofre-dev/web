@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Cliente | Ara y Bustamante Consultores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ============================================================================
+           VARIABLES CSS Y CONFIGURACIÓN BASE
+           ============================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colores principales */
+            --primary-color: #1a2332;
+            --secondary-color: #2c3e50;
+            --accent-color: #c9a96e;
+            --text-primary: #1a2332;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
+            --background: #ffffff;
+            --background-light: #f8fafc;
+            --background-card: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            
+            /* Tipografías */
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            /* Espaciado */
+            --header-height: 80px;
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+            
+            /* Sombras */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            
+            /* Transiciones */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--background-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* ============================================================================
+           HEADER Y NAVEGACIÓN
+           ============================================================================ */
+        .header {
+            background: white;
+            height: var(--header-height);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .welcome-text {
+            text-align: right;
+        }
+
+        .welcome-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .welcome-company {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logout-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        /* ============================================================================
+           HERO SECTION
+           ============================================================================ */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* ============================================================================
+           APLICACIONES
+           ============================================================================ */
+        .apps-section {
+            padding: 4rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .app-card {
+            background: var(--background-card);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .app-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--accent-color), #d4af37);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-body {
+            padding: 2rem;
+        }
+
+        .app-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .app-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-icon {
+            color: var(--success-color);
+            margin-right: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .app-button {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .app-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================================
+           MODAL DE APLICACIONES
+           ============================================================================ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+        }
+
+        .modal-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-right: auto;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* ============================================================================
+           CALCULADORA TRIBUTARIA
+           ============================================================================ */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+        }
+
+        .calculate-btn {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .calculate-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .result-card {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .result-amount {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .result-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .breakdown-item {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .breakdown-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .breakdown-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ============================================================================
+           SUBIDA DE DOCUMENTOS
+           ============================================================================ */
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+
+        .upload-area:hover,
+        .upload-area.dragover {
+            border-color: var(--accent-color);
+            background: rgba(201, 169, 110, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-subtext {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .uploaded-files {
+            margin-top: 2rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .file-icon {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .file-details {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .file-size {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .file-action {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-action:hover {
+            background: var(--background-light);
+        }
+
+        .file-action.delete:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+        }
+
+        /* ============================================================================
+           CALENDARIO DE OBLIGACIONES
+           ============================================================================ */
+        .calendar-container {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .calendar-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+        }
+
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .calendar-month {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .calendar-day-header {
+            background: var(--background-light);
+            padding: 0.8rem 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-day:hover {
+            background: var(--background-light);
+        }
+
+        .calendar-day.today {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .calendar-day.has-event {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 8px;
+            height: 8px;
+            background: var(--danger-color);
+            border-radius: 50%;
+        }
+
+        .day-number {
+            font-weight: 600;
+        }
+
+        .day-events {
+            margin-top: 0.3rem;
+        }
+
+        .day-event {
+            font-size: 0.7rem;
+            background: var(--danger-color);
+            color: white;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ============================================================================
+           ESTADO DE PROYECTOS
+           ============================================================================ */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-item {
+            background: white;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            background: var(--background-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-title {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-progress-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success-color);
+            transition: width 0.5s ease;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-review {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-completed {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info-color);
+        }
+
+        /* ============================================================================
+           RESPONSIVE DESIGN
+           ============================================================================ */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .hero-container {
+                padding: 0 1rem;
+            }
+
+            .apps-section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                max-width: 95vw;
+                margin: 1rem;
+            }
+
+            .user-section {
+                gap: 0.5rem;
+            }
+
+            .welcome-text {
+                display: none;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ============================================================================
+           ANIMACIONES
+           ============================================================================ */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo">A&B Consultores</div>
+                <div class="logo-subtitle">Portal del Cliente</div>
+            </div>
+            
+            <div class="user-section">
+                <div class="welcome-text">
+                    <div class="welcome-name">Empresa ABC S.A.</div>
+                    <div class="welcome-company">RUT: 12.345.678-9</div>
+                </div>
+                <div class="user-avatar"></div>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">Portal de clientes</h1>
+            <p class="hero-subtitle">Acceda a herramientas especializadas para optimizar su gestión tributaria.</p>
+            
+            <!-- <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Proyectos Activos</span>
+                </div>
+                 
+                <div class="hero-stat">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Días para Declaración</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">$2.3M</span>
+                    <span class="stat-label">Ahorro Tributario YTD</span>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- APLICACIONES -->
+    <section class="apps-section">
+        <div class="section-header">
+            <h2 class="section-title">Herramientas Disponibles</h2>
+            <p class="section-description">Suite completa de aplicaciones diseñadas para simplificar su gestión tributaria y maximizar su eficiencia operativa.</p>
+        </div>
+
+        <div class="apps-grid">
+            <!-- Calculadora Tributaria -->
+            <div class="app-card" onclick="openModal('calculatorModal')">
+                <div class="app-header">
+                    <div class="app-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="app-title">Calculadora Tributaria</h3>
+                    <p class="app-subtitle">Herramientas de cálculo fiscal especializado</p>
+                </div>
+                <div class="app-body">
+                    <p class="app-description">
+                        Suite completa de calculadoras para impuesto a la renta, PPM, créditos fiscales y planificación tributaria avanzada.
+                    </p>
+                    <ul class="app-features">
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Cálculo de impuesto anual
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Simulador de PPM mensual
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Análisis de créditos fiscales
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Proyecciones tributarias
+                        </li>
+                    </ul>
+                    <button class="app-button">Abrir Calculadora</button>
+                </div>
+            </div>
+
+            <!-- Subida de Documentos -->
+            <div class="app-card" onclick="openModal('documentsModal')">
+                <div class="app-header">
+                    <div class="app-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3 class="app-title">Centro de Documentos</h3>
+                    <p class="app-subtitle">Gestión segura de archivos contables</p>
+                </div>
+                <div class="app-body">
+                    <p class="app-description">
+                        Plataforma segura para compartir documentos contables, facturas, contratos y recibir informes de nuestro equipo.
+                    </p>
+                    <ul class="app-features">
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Subida masiva de archivos
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Organización automática
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Descarga de informes
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Notificaciones en tiempo real
+                        </li>
+                    </ul>
+                    <button class="app-button">Gestionar Documentos</button>
+                </div>
+            </div>
+
+            <!-- Calendario Tributario -->
+            <div class="app-card" onclick="openModal('calendarModal')">
+                <div class="app-header">
+                    <div class="app-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="app-title">Calendario Tributario</h3>
+                    <p class="app-subtitle">Control de fechas y obligaciones</p>
+                </div>
+                <div class="app-body">
+                    <p class="app-description">
+                        Calendario personalizado con todas sus obligaciones tributarias, fechas de vencimiento y recordatorios automáticos.
+                    </p>
+                    <ul class="app-features">
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Recordatorios automáticos
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Fechas personalizadas
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Sincronización con calendario
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Alertas por email y SMS
+                        </li>
+                    </ul>
+                    <button class="app-button">Ver Calendario</button>
+                </div>
+            </div>
+
+            <!-- Estado de Proyectos -->
+            <div class="app-card" onclick="openModal('projectsModal')">
+                <div class="app-header">
+                    <div class="app-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="app-title">Estado de Proyectos</h3>
+                    <p class="app-subtitle">Seguimiento en tiempo real</p>
+                </div>
+                <div class="app-body">
+                    <p class="app-description">
+                        Monitoreo completo del progreso de sus proyectos, hitos alcanzados y próximas entregas programadas.
+                    </p>
+                    <ul class="app-features">
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Progreso en tiempo real
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Historial de actividades
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Comunicación directa
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Reportes de avance
+                        </li>
+                    </ul>
+                    <button class="app-button">Ver Proyectos</button>
+                </div>
+            </div>
+
+            <!-- Facturación y Pagos -->
+            <div class="app-card" onclick="openModal('billingModal')">
+                <div class="app-header">
+                    <div class="app-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="app-title">Facturación y Pagos</h3>
+                    <p class="app-subtitle">Control financiero completo</p>
+                </div>
+                <div class="app-body">
+                    <p class="app-description">
+                        Acceso completo a sus facturas, estados de cuenta, historial de pagos y opciones de pago en línea.
+                    </p>
+                    <ul class="app-features">
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Facturas descargables
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Pago en línea seguro
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Historial completo
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Estados de cuenta
+                        </li>
+                    </ul>
+                    <button class="app-button">Ver Facturación</button>
+                </div>
+            </div>
+
+            <!-- Consultas y Soporte -->
+            <div class="app-card" onclick="openModal('supportModal')">
+                <div class="app-header">
+                    <div class="app-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="app-title">Consultas y Soporte</h3>
+                    <p class="app-subtitle">Asistencia especializada 24/7</p>
+                </div>
+                <div class="app-body">
+                    <p class="app-description">
+                        Canal directo de comunicación con nuestros expertos para resolver dudas tributarias y recibir asesoría personalizada.
+                    </p>
+                    <ul class="app-features">
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Chat en tiempo real
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Tickets de soporte
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Base de conocimientos
+                        </li>
+                        <li class="app-feature">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            Videollamadas programadas
+                        </li>
+                    </ul>
+                    <button class="app-button">Obtener Soporte</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALES DE APLICACIONES -->
+    
+    <!-- Modal Calculadora Tributaria -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Calculadora Tributaria</h3>
+                <button class="modal-close" onclick="closeModal('calculatorModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="calculator-grid">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Ingresos Brutos Anuales</label>
+                            <input type="number" class="form-input" id="ingresos" placeholder="ej: 50000000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Gastos Deducibles</label>
+                            <input type="number" class="form-input" id="gastos" placeholder="ej: 15000000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Contribuyente</label>
+                            <select class="form-select" id="tipoContribuyente">
+                                <option value="primera">Primera Categoría</option>
+                                <option value="segunda">Segunda Categoría</option>
+                                <option value="pyme">PYME</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Región</label>
+                            <select class="form-select" id="region">
+                                <option value="metropolitana">Región Metropolitana</option>
+                                <option value="valparaiso">Valparaíso</option>
+                                <option value="bio">Biobío</option>
+                                <option value="otras">Otras Regiones</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">PPM Pagados</label>
+                            <input type="number" class="form-input" id="ppm" placeholder="ej: 2400000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Crédito Fiscal</label>
+                            <input type="number" class="form-input" id="credito" placeholder="ej: 500000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Año Tributario</label>
+                            <select class="form-select" id="año">
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 2rem;">
+                            <button class="calculate-btn" onclick="calculateTax()">
+                                <i class="fas fa-calculator"></i> Calcular Impuestos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="taxResult" class="result-card" style="display: none;">
+                    <h4 class="result-title">Resultado del Cálculo Tributario</h4>
+                    <div class="result-amount" id="resultAmount">$0</div>
+                    <div class="result-breakdown">
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Base Imponible</div>
+                            <div class="breakdown-value" id="baseImponible">$0</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Impuesto Calculado</div>
+                            <div class="breakdown-value" id="impuestoCalculado">$0</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Créditos Aplicados</div>
+                            <div class="breakdown-value" id="creditosAplicados">$0</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Impuesto a Pagar/Devolver</div>
+                            <div class="breakdown-value" id="impuestoFinal">$0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Documentos -->
+    <div id="documentsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Centro de Documentos</h3>
+                <button class="modal-close" onclick="closeModal('documentsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">Arrastre archivos aquí o haga click para seleccionar</div>
+                    <div class="upload-subtext">Formatos permitidos: PDF, Excel, Word, Imágenes (Máx. 10MB por archivo)</div>
+                    <input type="file" id="fileInput" class="file-input" multiple onchange="handleFileUpload(this.files)">
+                </div>
+                
+                <div class="uploaded-files" id="uploadedFiles">
+                    <!-- Documentos de ejemplo -->
+                    <div class="file-item">
+                        <div class="file-info">
+                            <i class="file-icon fas fa-file-pdf"></i>
+                            <div class="file-details">
+                                <div class="file-name">Declaración Anual 2024.pdf</div>
+                                <div class="file-size">2.3 MB • Subido hace 2 días</div>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <button class="file-action" title="Descargar">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="file-action delete" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="file-item">
+                        <div class="file-info">
+                            <i class="file-icon fas fa-file-excel"></i>
+                            <div class="file-details">
+                                <div class="file-name">Balance Mensual Marzo.xlsx</div>
+                                <div class="file-size">1.8 MB • Subido hace 1 semana</div>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <button class="file-action" title="Descargar">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="file-action delete" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Calendario -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Calendario de Obligaciones Tributarias</h3>
+                <button class="modal-close" onclick="closeModal('calendarModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button class="nav-btn" onclick="changeMonth(-1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span class="calendar-month">Octubre 2025</span>
+                            <button class="nav-btn" onclick="changeMonth(1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">Dom</div>
+                        <div class="calendar-day-header">Lun</div>
+                        <div class="calendar-day-header">Mar</div>
+                        <div class="calendar-day-header">Mié</div>
+                        <div class="calendar-day-header">Jue</div>
+                        <div class="calendar-day-header">Vie</div>
+                        <div class="calendar-day-header">Sáb</div>
+                        
+                        <!-- Días del calendario - Octubre 2025 -->
+                        <div class="calendar-day"><span class="day-number">29</span></div>
+                        <div class="calendar-day"><span class="day-number">30</span></div>
+                        <div class="calendar-day"><span class="day-number">1</span></div>
+                        <div class="calendar-day"><span class="day-number">2</span></div>
+                        <div class="calendar-day"><span class="day-number">3</span></div>
+                        <div class="calendar-day"><span class="day-number">4</span></div>
+                        <div class="calendar-day"><span class="day-number">5</span></div>
+                        
+                        <div class="calendar-day"><span class="day-number">6</span></div>
+                        <div class="calendar-day"><span class="day-number">7</span></div>
+                        <div class="calendar-day"><span class="day-number">8</span></div>
+                        <div class="calendar-day"><span class="day-number">9</span></div>
+                        <div class="calendar-day"><span class="day-number">10</span></div>
+                        <div class="calendar-day"><span class="day-number">11</span></div>
+                        <div class="calendar-day has-event">
+                            <span class="day-number">12</span>
+                            <div class="day-events">
+                                <div class="day-event">F29</div>
+                            </div>
+                        </div>
+                        
+                        <div class="calendar-day"><span class="day-number">13</span></div>
+                        <div class="calendar-day"><span class="day-number">14</span></div>
+                        <div class="calendar-day"><span class="day-number">15</span></div>
+                        <div class="calendar-day today"><span class="day-number">16</span></div>
+                        <div class="calendar-day"><span class="day-number">17</span></div>
+                        <div class="calendar-day"><span class="day-number">18</span></div>
+                        <div class="calendar-day"><span class="day-number">19</span></div>
+                        
+                        <div class="calendar-day has-event">
+                            <span class="day-number">20</span>
+                            <div class="day-events">
+                                <div class="day-event">F50</div>
+                            </div>
+                        </div>
+                        <div class="calendar-day"><span class="day-number">21</span></div>
+                        <div class="calendar-day"><span class="day-number">22</span></div>
+                        <div class="calendar-day"><span class="day-number">23</span></div>
+                        <div class="calendar-day"><span class="day-number">24</span></div>
+                        <div class="calendar-day"><span class="day-number">25</span></div>
+                        <div class="calendar-day"><span class="day-number">26</span></div>
+                        
+                        <div class="calendar-day"><span class="day-number">27</span></div>
+                        <div class="calendar-day"><span class="day-number">28</span></div>
+                        <div class="calendar-day"><span class="day-number">29</span></div>
+                        <div class="calendar-day has-event">
+                            <span class="day-number">30</span>
+                            <div class="day-events">
+                                <div class="day-event">Renta</div>
+                            </div>
+                        </div>
+                        <div class="calendar-day"><span class="day-number">31</span></div>
+                        <div class="calendar-day"><span class="day-number">1</span></div>
+                        <div class="calendar-day"><span class="day-number">2</span></div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius);">
+                    <h4 style="margin-bottom: 1rem; color: var(--text-primary);">Próximas Obligaciones</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="display: flex; justify-content: between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <span>12 Oct - Declaración F29 (IVA Mensual)</span>
+                            <span style="color: var(--danger-color); font-weight: 600;">Urgente</span>
+                        </div>
+                        <div style="display: flex; justify-content: between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <span>20 Oct - Declaración F50 (Impuestos Adicionales)</span>
+                            <span style="color: var(--warning-color); font-weight: 600;">Próxima</span>
+                        </div>
+                        <div style="display: flex; justify-content: between; padding: 0.5rem 0;">
+                            <span>30 Oct - Declaración Anual de Renta</span>
+                            <span style="color: var(--info-color); font-weight: 600;">Planificada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Proyectos -->
+    <div id="projectsModal" class="modal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Estado de Proyectos</h3>
+                <button class="modal-close" onclick="closeModal('projectsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="projects-list">
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h4 class="project-title">Declaración Anual de Renta 2024</h4>
+                            <div class="project-meta">
+                                <span><i class="fas fa-calendar"></i> Inicio: 15 Sep 2025</span>
+                                <span><i class="fas fa-clock"></i> Entrega: 30 Oct 2025</span>
+                                <span><i class="fas fa-user"></i> Responsable: Carlos Ara González</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-progress-section">
+                                <div class="progress-label">
+                                    <span>Progreso General</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: between; align-items: center;">
+                                <span class="project-status status-active">En Progreso</span>
+                                <span style="font-size: 0.9rem; color: var(--text-secondary);">
+                                    Última actualización: Hace 2 horas
+                                </span>
+                            </div>
+                            
+                            <div style="margin-top: 1rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius);">
+                                <h5 style="margin-bottom: 0.5rem; color: var(--text-primary);">Últimas Actividades:</h5>
+                                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-secondary);">
+                                    <li style="margin-bottom: 0.3rem;">✓ Revisión de estados financieros completada</li>
+                                    <li style="margin-bottom: 0.3rem;">✓ Análisis de gastos rechazados finalizado</li>
+                                    <li style="margin-bottom: 0.3rem;">⏳ En proceso: Cálculo de impuesto final</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h4 class="project-title">Asesoría en Reorganización Empresarial</h4>
+                            <div class="project-meta">
+                                <span><i class="fas fa-calendar"></i> Inicio: 01 Oct 2025</span>
+                                <span><i class="fas fa-clock"></i> Entrega: 15 Nov 2025</span>
+                                <span><i class="fas fa-user"></i> Responsable: Julia Bustamante</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-progress-section">
+                                <div class="progress-label">
+                                    <span>Progreso General</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: between; align-items: center;">
+                                <span class="project-status status-review">En Revisión</span>
+                                <span style="font-size: 0.9rem; color: var(--text-secondary);">
+                                    Última actualización: Hace 1 día
+                                </span>
+                            </div>
+                            
+                            <div style="margin-top: 1rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius);">
+                                <h5 style="margin-bottom: 0.5rem; color: var(--text-primary);">Próximos Pasos:</h5>
+                                <ul style="list-style: none; font-size: 0.9rem; color: var(--text-secondary);">
+                                    <li style="margin-bottom: 0.3rem;">⏳ Evaluación de estructura societaria actual</li>
+                                    <li style="margin-bottom: 0.3rem;">⏳ Propuesta de nueva estructura</li>
+                                    <li style="margin-bottom: 0.3rem;">📋 Programar reunión de presentación</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-item">
+                        <div class="project-header">
+                            <h4 class="project-title">Auditoría Financiera Anual</h4>
+                            <div class="project-meta">
+                                <span><i class="fas fa-calendar"></i> Inicio: 20 Ago 2025</span>
+                                <span><i class="fas fa-clock"></i> Entrega: 25 Oct 2025</span>
+                                <span><i class="fas fa-user"></i> Responsable: Equipo de Auditoría</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-progress-section">
+                                <div class="progress-label">
+                                    <span>Progreso General</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: between; align-items: center;">
+                                <span class="project-status status-completed">Casi Completado</span>
+                                <span style="font-size: 0.9rem; color: var(--text-secondary);">
+                                    Última actualización: Hace 3 horas
+                                </span>
+                            </div>
+                            
+                            <div style="margin-top: 1rem; padding: 1rem; background: var(--success-color); background: rgba(16, 185, 129, 0.1); border-radius: var(--border-radius);">
+                                <h5 style="margin-bottom: 0.5rem; color: var(--success-color);">Estado: Preparando entrega final</h5>
+                                <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+                                    El informe final de auditoría está siendo revisado y será entregado según cronograma.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Facturación -->
+    <div id="billingModal" class="modal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Facturación y Pagos</h3>
+                <button class="modal-close" onclick="closeModal('billingModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div style="background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius);">
+                        <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Resumen de Cuenta</h4>
+                        <div style="display: flex; justify-content: between; margin-bottom: 0.5rem;">
+                            <span>Saldo Actual:</span>
+                            <strong style="color: var(--success-color);">$0</strong>
+                        </div>
+                        <div style="display: flex; justify-content: between; margin-bottom: 0.5rem;">
+                            <span>Facturas Pendientes:</span>
+                            <strong style="color: var(--warning-color);">$1,250,000</strong>
+                        </div>
+                        <div style="display: flex; justify-content: between;">
+                            <span>Próximo Vencimiento:</span>
+                            <strong style="color: var(--danger-color);">25 Oct 2025</strong>
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius);">
+                        <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Acciones Rápidas</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <button style="background: var(--success-color); color: white; border: none; padding: 0.8rem; border-radius: var(--border-radius); cursor: pointer;">
+                                <i class="fas fa-credit-card"></i> Pagar Facturas Pendientes
+                            </button>
+                            <button style="background: var(--info-color); color: white; border: none; padding: 0.8rem; border-radius: var(--border-radius); cursor: pointer;">
+                                <i class="fas fa-download"></i> Descargar Estado de Cuenta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 style="margin-bottom: 1rem; color: var(--text-primary);">Historial de Facturas</h4>
+                <div style="background: white; border-radius: var(--border-radius); overflow: hidden; border: 1px solid var(--border-color);">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--background-light);">
+                                <th style="padding: 1rem; text-align: left; font-weight: 600; color: var(--text-primary);">N° Factura</th>
+                                <th style="padding: 1rem; text-align: left; font-weight: 600; color: var(--text-primary);">Fecha</th>
+                                <th style="padding: 1rem; text-align: left; font-weight: 600; color: var(--text-primary);">Concepto</th>
+                                <th style="padding: 1rem; text-align: left; font-weight: 600; color: var(--text-primary);">Monto</th>
+                                <th style="padding: 1rem; text-align: left; font-weight: 600; color: var(--text-primary);">Estado</th>
+                                <th style="padding: 1rem; text-align: left; font-weight: 600; color: var(--text-primary);">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">F-2025-089</td>
+                                <td style="padding: 1rem;">15 Oct 2025</td>
+                                <td style="padding: 1rem;">Declaración Anual</td>
+                                <td style="padding: 1rem; font-weight: 600;">$850,000</td>
+                                <td style="padding: 1rem;"><span style="background: rgba(245, 158, 11, 0.1); color: var(--warning-color); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Pendiente</span></td>
+                                <td style="padding: 1rem;">
+                                    <button style="background: var(--info-color); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: var(--border-radius); cursor: pointer; margin-right: 0.5rem;">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button style="background: var(--success-color); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: var(--border-radius); cursor: pointer;">
+                                        <i class="fas fa-credit-card"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 1rem;">F-2025-074</td>
+                                <td style="padding: 1rem;">01 Oct 2025</td>
+                                <td style="padding: 1rem;">Asesoría Tributaria</td>
+                                <td style="padding: 1rem; font-weight: 600;">$400,000</td>
+                                <td style="padding: 1rem;"><span style="background: rgba(245, 158, 11, 0.1); color: var(--warning-color); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Pendiente</span></td>
+                                <td style="padding: 1rem;">
+                                    <button style="background: var(--info-color); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: var(--border-radius); cursor: pointer; margin-right: 0.5rem;">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button style="background: var(--success-color); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: var(--border-radius); cursor: pointer;">
+                                        <i class="fas fa-credit-card"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem;">F-2025-063</td>
+                                <td style="padding: 1rem;">15 Sep 2025</td>
+                                <td style="padding: 1rem;">Auditoría Financiera</td>
+                                <td style="padding: 1rem; font-weight: 600;">$1,200,000</td>
+                                <td style="padding: 1rem;"><span style="background: rgba(16, 185, 129, 0.1); color: var(--success-color); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Pagada</span></td>
+                                <td style="padding: 1rem;">
+                                    <button style="background: var(--info-color); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: var(--border-radius); cursor: pointer;">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Soporte -->
+    <div id="supportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Consultas y Soporte</h3>
+                <button class="modal-close" onclick="closeModal('supportModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h4 style="margin-bottom: 1rem; color: var(--text-primary);">Crear Nueva Consulta</h4>
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Consulta</label>
+                            <select class="form-select">
+                                <option>Consulta Tributaria</option>
+                                <option>Soporte Técnico</option>
+                                <option>Estado de Proyecto</option>
+                                <option>Facturación</option>
+                                <option>Otros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Asunto</label>
+                            <input type="text" class="form-input" placeholder="Descripción breve de su consulta">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Descripción Detallada</label>
+                            <textarea class="form-input" rows="4" placeholder="Proporcione todos los detalles relevantes..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Prioridad</label>
+                            <select class="form-select">
+                                <option>Normal</option>
+                                <option>Alta</option>
+                                <option>Urgente</option>
+                            </select>
+                        </div>
+                        
+                        <button style="background: var(--primary-color); color: white; border: none; padding: 1rem 2rem; border-radius: var(--border-radius); cursor: pointer; width: 100%; font-weight: 600;">
+                            <i class="fas fa-paper-plane"></i> Enviar Consulta
+                        </button>
+                    </div>
+                    
+                    <div>
+                        <h4 style="margin-bottom: 1rem; color: var(--text-primary);">Consultas Recientes</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 1rem;">
+                                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 0.5rem;">
+                                    <strong style="color: var(--text-primary);">Ticket #2025-147</strong>
+                                    <span style="background: rgba(16, 185, 129, 0.1); color: var(--success-color); padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600;">Resuelto</span>
+                                </div>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Consulta sobre deducción de gastos de capacitación</p>
+                                <div style="font-size: 0.8rem; color: var(--text-light);">Creado: 10 Oct 2025 • Resuelto: 12 Oct 2025</div>
+                            </div>
+                            
+                            <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 1rem;">
+                                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 0.5rem;">
+                                    <strong style="color: var(--text-primary);">Ticket #2025-134</strong>
+                                    <span style="background: rgba(245, 158, 11, 0.1); color: var(--warning-color); padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600;">En Progreso</span>
+                                </div>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">Solicitud de reunión para revisar declaración</p>
+                                <div style="font-size: 0.8rem; color: var(--text-light);">Creado: 05 Oct 2025 • Actualizado: 14 Oct 2025</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius);">
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Contacto Directo</h5>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                                <div><i class="fas fa-phone" style="margin-right: 0.5rem; color: var(--accent-color);"></i> (+56 2) 2233-3395</div>
+                                <div><i class="fas fa-envelope" style="margin-right: 0.5rem; color: var(--accent-color);"></i> soporte@araybustamante.cl</div>
+                                <div><i class="fas fa-clock" style="margin-right: 0.5rem; color: var(--accent-color);"></i> Lun-Vie 9:00-18:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================================
+        // FUNCIONALIDAD DEL PORTAL DE CLIENTES
+        // ============================================================================
+
+        // Gestión de modales
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Cerrar modal al hacer click fuera
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // ============================================================================
+        // CALCULADORA TRIBUTARIA
+        // ============================================================================
+        function calculateTax() {
+            const ingresos = parseFloat(document.getElementById('ingresos').value) || 0;
+            const gastos = parseFloat(document.getElementById('gastos').value) || 0;
+            const ppm = parseFloat(document.getElementById('ppm').value) || 0;
+            const credito = parseFloat(document.getElementById('credito').value) || 0;
+            const tipoContribuyente = document.getElementById('tipoContribuyente').value;
+            
+            if (ingresos === 0) {
+                alert('Por favor ingrese el monto de ingresos brutos');
+                return;
+            }
+            
+            // Cálculos simplificados (en la realidad serían más complejos)
+            const baseImponible = ingresos - gastos;
+            let tasa = 0.25; // Tasa básica primera categoría
+            
+            if (tipoContribuyente === 'pyme') {
+                tasa = 0.25; // PYME tiene tasa diferenciada
+            } else if (tipoContribuyente === 'segunda') {
+                tasa = 0.35; // Segunda categoría
+            }
+            
+            const impuestoCalculado = baseImponible * tasa;
+            const creditosAplicados = ppm + credito;
+            const impuestoFinal = impuestoCalculado - creditosAplicados;
+            
+            // Mostrar resultados
+            document.getElementById('baseImponible').textContent = formatCurrency(baseImponible);
+            document.getElementById('impuestoCalculado').textContent = formatCurrency(impuestoCalculado);
+            document.getElementById('creditosAplicados').textContent = formatCurrency(creditosAplicados);
+            document.getElementById('impuestoFinal').textContent = formatCurrency(impuestoFinal);
+            document.getElementById('resultAmount').textContent = formatCurrency(Math.abs(impuestoFinal));
+            
+            // Cambiar color según si debe pagar o recibir devolución
+            const resultElement = document.getElementById('resultAmount');
+            if (impuestoFinal > 0) {
+                resultElement.style.color = 'var(--danger-color)';
+                document.querySelector('.result-title').textContent = 'Impuesto a Pagar';
+            } else {
+                resultElement.style.color = 'var(--success-color)';
+                document.querySelector('.result-title').textContent = 'Devolución a Recibir';
+            }
+            
+            document.getElementById('taxResult').style.display = 'block';
+            document.getElementById('taxResult').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-CL', {
+                style: 'currency',
+                currency: 'CLP',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // ============================================================================
+        // SUBIDA DE DOCUMENTOS
+        // ============================================================================
+        function handleFileUpload(files) {
+            const uploadedFilesContainer = document.getElementById('uploadedFiles');
+            
+            Array.from(files).forEach(file => {
+                const fileItem = createFileItem(file);
+                uploadedFilesContainer.insertBefore(fileItem, uploadedFilesContainer.firstChild);
+            });
+        }
+
+        function createFileItem(file) {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item slide-in';
+            
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            let fileIcon = 'fas fa-file';
+            
+            if (['pdf'].includes(fileExtension)) {
+                fileIcon = 'fas fa-file-pdf';
+            } else if (['xlsx', 'xls'].includes(fileExtension)) {
+                fileIcon = 'fas fa-file-excel';
+            } else if (['docx', 'doc'].includes(fileExtension)) {
+                fileIcon = 'fas fa-file-word';
+            } else if (['jpg', 'jpeg', 'png'].includes(fileExtension)) {
+                fileIcon = 'fas fa-file-image';
+            }
+            
+            fileItem.innerHTML = `
+                <div class="file-info">
+                    <i class="file-icon ${fileIcon}"></i>
+                    <div class="file-details">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${formatFileSize(file.size)} • Subido ahora</div>
+                    </div>
+                </div>
+                <div class="file-actions">
+                    <button class="file-action" title="Descargar">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="file-action delete" title="Eliminar" onclick="this.closest('.file-item').remove()">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            
+            return fileItem;
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Drag and drop functionality
+        const uploadArea = document.querySelector('.upload-area');
+        
+        if (uploadArea) {
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                handleFileUpload(e.dataTransfer.files);
+            });
+        }
+
+        // ============================================================================
+        // CALENDARIO
+        // ============================================================================
+        let currentMonth = 9; // Octubre (0-based)
+        let currentYear = 2025;
+
+        function changeMonth(direction) {
+            currentMonth += direction;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            
+            const months = [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ];
+            
+            document.querySelector('.calendar-month').textContent = `${months[currentMonth]} ${currentYear}`;
+        }
+
+        // ============================================================================
+        // ANIMACIONES Y EFECTOS
+        // ============================================================================
+        
+        // Animación de entrada para las tarjetas
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.app-card, .hero-stat').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ============================================================================
+        // INICIALIZACIÓN
+        // ============================================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Portal de Cliente Ara y Bustamante cargado correctamente');
+            
+            // Simular carga de datos del usuario
+            setTimeout(() => {
+                document.querySelectorAll('.hero-stat').forEach(stat => {
+                    stat.classList.add('pulse');
+                    setTimeout(() => {
+                        stat.classList.remove('pulse');
+                    }, 1000);
+                });
+            }, 1000);
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('¿Está seguro de que desea cerrar sesión?')) {
+                alert('Cerrando sesión...');
+                // Aquí iría la lógica real de logout
+            }
+        });
+    </script>
+</body>
+</html>
