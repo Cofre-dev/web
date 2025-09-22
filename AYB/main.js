@@ -1,6 +1,19 @@
 // Ara y Bustamante Consultores - JavaScript Functionality
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Configuración de EmailJS
+    const EMAILJS_CONFIG = {
+        PUBLIC_KEY: 'KiPrY8tXvIGdbv1Tu',        // Tu Public Key de EmailJS
+        SERVICE_ID: 'service_qwyuvgm',          // ID del servicio de email
+        TEMPLATE_ID: 'template_e5q9wrz'         // ID del template
+    };
+
+    // Inicializar EmailJS
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        window.EMAILJS_CONFIG = EMAILJS_CONFIG; // Hacer disponible globalmente
+    }
+
     // Inicialización de todas las funcionalidades
     initNavigation();
     initScrollEffects();
@@ -210,7 +223,7 @@ function submitForm() {
     const form = document.querySelector('.contact-form');
     const requiredFields = form.querySelectorAll('[required]');
     let isFormValid = true;
-    
+
     // Validar todos los campos requeridos
     requiredFields.forEach(field => {
         const event = { target: field };
@@ -218,35 +231,81 @@ function submitForm() {
             isFormValid = false;
         }
     });
-    
+
     if (!isFormValid) {
         showNotification('Por favor complete todos los campos obligatorios', 'error');
         return;
     }
-    
-    // Simular envío del formulario
+
+    // Recopilar datos del formulario
+    const formData = {
+        from_name: document.getElementById('nombre').value,
+        from_email: document.getElementById('email').value,
+        company: document.getElementById('empresa').value || 'No especificada',
+        phone: document.getElementById('telefono').value || 'No especificado',
+        service: document.getElementById('servicio').value || 'No especificado',
+        message: document.getElementById('mensaje').value,
+        reply_to: document.getElementById('email').value
+    };
+
+    // Mostrar estado de envío
     const submitBtn = form.querySelector('.btn-primary');
     const originalText = submitBtn.textContent;
-    
+
     submitBtn.textContent = 'Enviando...';
     submitBtn.disabled = true;
     submitBtn.style.opacity = '0.7';
-    
-    // Simular delay de envío
-    setTimeout(() => {
-        // Resetear formulario
-        form.querySelectorAll('input, select, textarea').forEach(field => {
-            field.value = '';
-        });
-        
-        // Restaurar botón
+
+    // Debug: Verificar configuración antes de enviar
+    console.log('Configuración EmailJS:', window.EMAILJS_CONFIG);
+    console.log('Datos del formulario:', formData);
+
+    // Verificar que EmailJS esté disponible
+    if (typeof emailjs === 'undefined') {
+        console.error('EmailJS no está cargado');
+        showNotification('Error: EmailJS no está disponible. Verifique la conexión a internet.', 'error');
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         submitBtn.style.opacity = '';
-        
-        // Mostrar mensaje de éxito
-        showNotification('¡Consulta enviada exitosamente! Nos contactaremos pronto.', 'success');
-    }, 2000);
+        return;
+    }
+
+    // Enviar email usando EmailJS
+    emailjs.send(window.EMAILJS_CONFIG.SERVICE_ID, window.EMAILJS_CONFIG.TEMPLATE_ID, formData)
+        .then(function(response) {
+            console.log('Email enviado exitosamente!', response.status, response.text);
+
+            // Resetear formulario
+            form.querySelectorAll('input, select, textarea').forEach(field => {
+                field.value = '';
+            });
+
+            // Mostrar mensaje de éxito
+            showNotification('¡Consulta enviada exitosamente! Nos contactaremos pronto.', 'success');
+        })
+        .catch(function(error) {
+            console.error('Error completo al enviar el email:', error);
+
+            // Mostrar error más específico
+            let errorMessage = 'Error al enviar la consulta. ';
+            if (error.status === 405) {
+                errorMessage += 'Error de configuración (Method Not Allowed). Verifique las credenciales de EmailJS.';
+            } else if (error.status === 400) {
+                errorMessage += 'Datos del formulario inválidos.';
+            } else if (error.status === 403) {
+                errorMessage += 'Acceso denegado. Verifique la configuración del servicio.';
+            } else {
+                errorMessage += `Error ${error.status || 'desconocido'}: ${error.text || error.message || 'Error de conexión'}`;
+            }
+
+            showNotification(errorMessage, 'error');
+        })
+        .finally(function() {
+            // Restaurar botón
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '';
+        });
 }
 
 // ==================== ANIMACIONES ====================
