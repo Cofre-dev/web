@@ -73,9 +73,9 @@ function initScrollEffects() {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
     });
+
 }
 
-// ==================== TARJETAS DEL EQUIPO ====================
 function initTeamCards() {
     const teamCards = document.querySelectorAll('.team-card');
     
