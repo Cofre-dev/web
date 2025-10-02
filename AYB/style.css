@@ -90,8 +90,8 @@ body {
 }
 
 .link-nav {
-  /* Establece la apariencia del botón */
-  border-radius: 8px; /* Bordes redondeados */
+  margin-right: 100px;
+  border-radius: 8px; 
   padding: 10px 18px; /* Espaciado interno para que parezca un botón */
   background-color: #4CAF50; /* Color de fondo verde */
   color: white; /* Color del texto blanco */

@@ -3,15 +3,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Configuración de EmailJS
     const EMAILJS_CONFIG = {
-        PUBLIC_KEY: 'KiPrY8tXvIGdbv1Tu',        // Tu Public Key de EmailJS
-        SERVICE_ID: 'service_qwyuvgm',          // ID del servicio de email
-        TEMPLATE_ID: 'template_e5q9wrz'         // ID del template
+        PUBLIC_KEY: 'KiPrY8tXvIGdbv1Tu',        
+        SERVICE_ID: 'service_qwyuvgm',          
+        TEMPLATE_ID: 'template_e5q9wrz'         
     };
 
     // Inicializar EmailJS
     if (typeof emailjs !== 'undefined') {
         emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-        window.EMAILJS_CONFIG = EMAILJS_CONFIG; // Hacer disponible globalmente
+        window.EMAILJS_CONFIG = EMAILJS_CONFIG;
     }
 
     // Inicialización de todas las funcionalidades
@@ -22,12 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnimations();
 });
 
-// ==================== NAVEGACIÓN ====================
 function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // Efecto de transparencia en la navegación al hacer scroll
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             navbar.style.background = 'rgba(255, 255, 255, 0.98)';

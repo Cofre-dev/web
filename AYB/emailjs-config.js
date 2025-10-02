@@ -1,15 +1,7 @@
-// Configuración de EmailJS para Ara y Bustamante Consultores
-
-// INSTRUCCIONES PARA CONFIGURAR EMAILJS:
-// 1. Ir a https://www.emailjs.com/ y crear una cuenta gratuita
-// 2. Crear un nuevo servicio de email (Gmail, Outlook, etc.)
-// 3. Crear un template de email
-// 4. Reemplazar los valores YOUR_* con los datos reales
-
 const EMAILJS_CONFIG = {
-    PUBLIC_KEY: 'KiPrY8tXvIGdbv1Tu',        // Tu Public Key de EmailJS
-    SERVICE_ID: 'service_qwyuvgm',        // ID del servicio de email
-    TEMPLATE_ID: 'template_e5q9wrz'       // Reemplazar con el Template ID real de EmailJS
+    PUBLIC_KEY: 'KiPrY8tXvIGdbv1Tu',
+    SERVICE_ID: 'service_qwyuvgm',      
+    TEMPLATE_ID: 'template_e5q9wrz'       
 };
 
 // Template sugerido para EmailJS:
