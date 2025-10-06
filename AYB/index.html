@@ -1,388 +1,969 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="dark" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ara y Bustamante Consultores | Asesoría Tributaria de Excelencia</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Ara y bustamante Consultores</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#c9a96e",
+            "background-light": "#f8fafc",
+            "background-dark": "#1a2332",
+            "surface-light": "#ffffff",
+            "surface-dark": "#2c3e50",
+            "text-light": "#1a2332",
+            "text-dark": "#f8fafc",
+            "subtle-light": "#64748b",
+            "subtle-dark": "#94a3b8",
+          },
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            body: ["Inter", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    /* Animaciones de scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Efecto parallax suave */
+    .parallax-slow {
+      transition: transform 0.5s ease-out;
+    }
+
+    /* Animación de contador */
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .counter {
+      animation: countUp 0.6s ease-out;
+    }
+
+    /* Efecto hover mejorado para cards */
+    .service-card-enhanced {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .service-card-enhanced:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Animación de línea de título */
+    .title-line {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title-line::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, #c9a96e, transparent);
+      transition: width 0.8s ease-out;
+    }
+
+    .title-line.visible::after {
+      width: 100%;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Efecto de pulso para botones */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .pulse-on-hover:hover {
+      animation: pulse 1s infinite;
+    }
+
+    /* Social media icons styles */
+    .example-1 {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bolder;
+      background-color: #000;
+      border-radius: 30px;
+      padding: 20px;
+      height: 70px;
+      width: 300px;
+    }
+
+    .example-1 .icon-content {
+      margin: 0 10px;
+      position: relative;
+      font-weight: bolder;
+    }
+
+    .example-1 .icon-content .tooltip {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      color: #000;
+      padding: 6px 10px;
+      border-radius: 5px;
+      opacity: 0;
+      visibility: hidden;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      font-weight: bolder;
+    }
+
+    .example-1 .icon-content:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+      top: -50px;
+    }
+
+    .example-1 .icon-content .link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: #fff;
+      background-color: #000;
+      transition: all 0.3s ease-in-out;
+      font-weight: bolder;
+    }
+
+    .example-1 .icon-content .link:hover {
+      box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+    }
+
+    .example-1 .icon-content .link svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+    }
+
+    .example-1 .icon-content .link[data-social="linkedin"]:hover {
+      color: #0077b5;
+    }
+
+    .example-1 .icon-content .link[data-social="twitter"]:hover {
+      color: #000000;
+    }
+
+    /* Styled Button */
+    .styled-button {
+      position: relative;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffffff;
+      background: linear-gradient(to bottom, #171717, #242424);
+      border-radius: 9999px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 1), 0 10px 20px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #292929;
+      text-decoration: none;
+    }
+
+    .styled-button::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      right: -1px;
+      bottom: -1px;
+      left: -1px;
+      background: linear-gradient(to bottom, #292929, #000000);
+      z-index: -1;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+      opacity: 1;
+    }
+
+    .styled-button:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 1), 0 5px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .styled-button .inner-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, #171717, #242424);
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 1);
+      border: 1px solid #252525;
+      transition: all 0.2s ease;
+    }
+
+    .styled-button .inner-button::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      right: -1px;
+      bottom: -1px;
+      left: -1px;
+      background: linear-gradient(to bottom, #292929, #000000);
+      z-index: -1;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+      opacity: 1;
+    }
+
+    .styled-button .inner-button .icon {
+      filter: drop-shadow(0 10px 20px rgba(26, 25, 25, 0.9))
+        drop-shadow(0 0 4px rgba(0, 0, 0, 1));
+      transition: all 0.4s ease-in-out;
+    }
+
+    .styled-button .inner-button .icon:hover {
+      filter: drop-shadow(0 10px 20px rgba(50, 50, 50, 1))
+        drop-shadow(0 0 20px rgba(2, 2, 2, 1));
+      transform: rotate(-35deg);
+    }
+
+    /* LinkedIn Button */
+    .button {
+      height: 50px;
+      width: 200px;
+      position: relative;
+      background-color: #fff;
+      cursor: pointer;
+      border: 2px solid #252525;
+      overflow: hidden;
+      border-radius: 30px;
+      color: #000;
+      transition: all 0.5s ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn-txt {
+      z-index: 1;
+      font-weight: 800;
+      letter-spacing: 4px;
+    }
+
+    .type1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: all 0.5s ease-in-out;
+      background-color: #000;
+      border-radius: 30px;
+      visibility: hidden;
+      height: 10px;
+      width: 10px;
+      z-index: 0;
+    }
+
+    .button:hover {
+      box-shadow: 1px 1px 200px #252525;
+      color: #fff;
+      border: none;
+    }
+
+    .type1:hover::after {
+      visibility: visible;
+      transform: scale(100) translateX(2px);
+    }
+
+    .button .btn-txt {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Navbar CTA - Elegant Corporate Style */
+    .nav-cta {
+      font-size: 14px;
+      color: #c9a96e;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      position: relative;
+      padding: 0.5em 0;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-cta::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+      transition: all 0.4s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-cta:hover {
+      color: #d4b87a;
+    }
+
+    .nav-cta:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.1), transparent);
+      transform: translate(-50%, -50%);
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
+
+    .nav-cta:hover::before {
+      width: 150%;
+      height: 150%;
+    }
+
+    /* Animated Button - Hero Section */
+    .animated-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16px 36px;
+      border: 4px solid;
+      border-color: transparent;
+      font-size: 16px;
+      background-color: inherit;
+      border-radius: 100px;
+      font-weight: 600;
+      color: #ffffff;
+      box-shadow: 0 0 0 2px #c9a96e;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      text-decoration: none;
+    }
+
+    .animated-button svg {
+      position: absolute;
+      width: 24px;
+      fill: #ffffff;
+      z-index: 9;
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .animated-button .arr-1 {
+      right: 16px;
+    }
+
+    .animated-button .arr-2 {
+      left: -25%;
+    }
+
+    .animated-button .circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background-color: #c9a96e;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .animated-button .text {
+      position: relative;
+      z-index: 1;
+      transform: translateX(-12px);
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .animated-button:hover {
+      box-shadow: 0 0 0 12px transparent;
+      color: #ffffff;
+      border-radius: 12px;
+    }
+
+    .animated-button:hover .arr-1 {
+      right: -25%;
+    }
+
+    .animated-button:hover .arr-2 {
+      left: 16px;
+    }
+
+    .animated-button:hover .text {
+      transform: translateX(12px);
+    }
+
+    .animated-button:hover svg {
+      fill: #ffffff;
+    }
+
+    .animated-button:active {
+      scale: 0.95;
+      box-shadow: 0 0 0 4px #c9a96e;
+    }
+
+    .animated-button:hover .circle {
+      width: 220px;
+      height: 220px;
+      opacity: 1;
+    }
+
+    /* Form Button */
+    .form-button {
+      cursor: pointer;
+      font-size: 1.4rem;
+      border-radius: 16px;
+      border: none;
+      padding: 2px;
+      background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
+      position: relative;
+    }
+
+    .form-button::after {
+      content: "";
+      position: absolute;
+      width: 65%;
+      height: 60%;
+      border-radius: 120px;
+      top: 0;
+      right: 0;
+      box-shadow: 0 0 20px #ffffff38;
+      z-index: -1;
+    }
+
+    .blob1 {
+      position: absolute;
+      width: 70px;
+      height: 100%;
+      border-radius: 16px;
+      bottom: 0;
+      left: 0;
+      background: radial-gradient(
+        circle 60px at 0% 100%,
+        #3fe9ff,
+        #0000ff80,
+        transparent
+      );
+      box-shadow: -10px 10px 30px #0051ff2d;
+    }
+
+    .inner-form {
+      padding: 14px 25px;
+      border-radius: 14px;
+      color: #fff;
+      z-index: 3;
+      position: relative;
+      background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+    }
+
+    .inner-form::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 14px;
+      background: radial-gradient(
+        circle 60px at 0% 100%,
+        #00e1ff1a,
+        #0000ff11,
+        transparent
+      );
+      position: absolute;
+    }
+  </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h3>A&B Consultores</h3>
-            </div>
-            <div class="nav-menu">
-                <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#liderazgo" class="nav-link">Liderazgo</a>
-                <a href="#servicios" class="nav-link">Servicios</a>
-                <a href="#equipo" class="nav-link">Equipo</a>
-                <a href="#contacto" class="nav-link">Contacto</a>
 
-            </div>
-            <div class="boton">
-                <a href="https://clientes.araybustamante.cl/client/login/" target="_blank" class="link-nav">Portal de clientes</a>
-            </div>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
+  <div class="relative min-h-screen w-full">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm shadow-md">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-20 items-center justify-between">
+          <a class="flex items-center gap-2" href="#">
+            <span class="font-display text-2xl font-bold text-primary">Ara y Bustamante consultores</span>
+          </a>
+
+          <nav class="hidden md:flex items-center gap-8">
+            <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">Inicio</a>
+
+            <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#about">Nosotros</a>
+
+            <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#services">Servicios</a>
+
+            <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#team">Equipo</a>
+
+            <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#contact">Contacto</a>
+
+            <a href="https://clientes.araybustamante.cl/client/login/" target="_blank" class="nav-cta">Portal de clientes</a>
+          </nav>
+
+          <a class="hidden md:inline-flex nav-cta" href="#contact">Solicitar Cotización</a>
+
+          <button class="md:hidden text-text-light dark:text-text-dark">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </button>
         </div>
-    </nav>
+      </div>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Asesoría Tributaria de <span class="accent">Excelencia</span></h1>
-                <h2 class="hero-subtitle">Más de cuatro décadas de experiencia al servicio de empresas que exigen resultados excepcionales</h2>
-                <p class="hero-description">Especializados en asesoría contable y tributaria para empresas de alto nivel. Combinamos experiencia sólida con un enfoque personalizado para optimizar su estructura fiscal.</p>
-                <div class="hero-cta">
-                    <a href="#contacto" class="btn-primary">Solicitar Consulta</a>
-                    <a href="#liderazgo" class="btn-secondary">Conocer Nuestro Equipo</a>
-                </div>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">40+</span>
-                    <span class="stat-label">Años de Experiencia</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Empresas Asesoradas</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Cumplimiento Tributario</span>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <main class="pt-20">
+      <!-- Hero Section -->
+      <section class="relative flex min-h-[60vh] md:min-h-screen items-center justify-center bg-cover bg-fixed bg-center py-20" id="hero-section" style='background-image: linear-gradient(rgba(26, 35, 50, 0.7), rgba(26, 35, 50, 0.7)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0YzPpOwATmNpeeN3CmCYIqy-QFHW96-KfQ_jB4t29XcjZ3_b-exq4-mjicMcyjQ59d33UifgMEhTK60OLC04RXl0gQkiPfQgvXbr5jYvf20H29r6z7d_PzkNs_0IBMB-y5T9EX-tJpe7iY-8ShdQ-fIWy0N10C0ht1AsYSrj0xlgd8V1_k-ZzI7fWLHf_KhddpmTlKdZXM-XrU0mTUiz3lgDvNhL3OmieF3elj5w0euH5MyKcsAjQpsLyVGyn4L0LmAeIEV7svTI")'>
+
+        <div class="container mx-auto px-4 text-center text-white">
+          <h1 class="font-display text-4xl font-bold md:text-6xl lg:text-7xl fade-in">Consultoría Tributaria para su Empresa</h1>
+
+          <p class="mx-auto mt-6 max-w-3xl text-lg text-subtle-dark fade-in" style="transition-delay: 0.2s">Navegue las complejidades de las regulaciones tributarias con confianza. Nuestro equipo de consultores experimentados proporciona soluciones personalizadas para optimizar su estrategia financiera y asegurar el cumplimiento.</p>
+
+          <div class="mt-10 flex flex-wrap justify-center gap-4 fade-in" style="transition-delay: 0.4s">
+            <a class="animated-button" href="#services">
+              <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                <path
+                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                ></path>
+              </svg>
+              <span class="text">Conocer Más</span>
+              <span class="circle"></span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                <path
+                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                ></path>
+              </svg>
+            </a>
+            <a class="inline-flex items-center justify-center rounded-lg bg-surface-dark px-8 py-3 text-base font-bold text-white shadow-xl transition-transform hover:scale-105 pulse-on-hover dark:bg-surface-light dark:text-text-light" href="#contact">Comenzar</a>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Leadership Section -->
-    <section id="liderazgo" class="leadership">
-        <div class="container">
-            <div class="leadership-content">
-                <div class="leadership-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div class="image-overlay">
-                        <span class="experience-badge">40+ años</span>
-                    </div>
-                </div>
-                <div class="leadership-info">
-                    <span class="section-label">Liderazgo Experto</span>
-                    <h2 class="section-title">Carlos Ara González</h2>
-                    <h3 class="leadership-position">Gerente Tributario</h3>
-                    <h2 class="leadership-position">Contador auditor - Universidad de santiago</h2>
-                    <p class="leadership-description">
-                        Con más de cuatro décadas de experiencia en el ámbito tributario, Carlos Ara González representa la máxima autoridad en asesoría fiscal del país. Su trayectoria incluye 33 años en el Servicio de Impuestos Internos como fiscalizador y Jefe Provincial, seguidos de una distinguida carrera en el sector privado.
-                    </p>
-                    <div class="leadership-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-university"></i>
-                            <span>Funcionario SII - Jefe Provincial</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-building"></i>
-                            <span>Director Académico Thomson Reuters</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>Experto en Reforma Tributaria</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- About Section -->
+      <section class="py-24 sm:py-32" id="about">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+            <div class="space-y-6 slide-in-left">
+              <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestro gerente tributario</h2>
+              <h3 class="text-xl font-semibold text-primary">Carlos Ara, Socio fundador y gerente tributario </h3>
+              <p class="text-subtle-light dark:text-subtle-dark">Con más de 40 años de experiencia en consultoría tributaria, Don Carlos lidera nuestro equipo con un compromiso con la excelencia y el éxito del cliente. Su experiencia abarca diversas industrias, brindando orientación estratégica y soluciones innovadoras.</p>
+              <a class="button type1" href="https://www.linkedin.com/in/carlosarag/" target="_blank">
+                <span class="btn-txt">LinkedIn</span>
+              </a>
             </div>
+            <div class="relative w-full overflow-hidden rounded-xl shadow-lg slide-in-right">
+              <img src="assets/img/carlosara.jpg" alt="Carlos Ara" class="w-full h-auto object-cover" style="min-height: 460px; max-height: 800px;">
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Services Section -->
-    <section id="servicios" class="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Nuestros Servicios</span>
-                <h2 class="section-title">Soluciones Tributarias Integrales</h2>
-                <p class="section-description">Ofrecemos un portafolio completo de servicios diseñados para satisfacer las necesidades más exigentes de nuestros clientes corporativos.</p>
+      <!-- Services Section -->
+      <section class="bg-surface-light py-24 dark:bg-surface-dark sm:py-32" id="services">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center fade-in">
+            <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestros Servicios</h2>
+            <p class="mx-auto mt-4 max-w-2xl text-subtle-light dark:text-subtle-dark">Ofrecemos un conjunto completo de servicios para satisfacer todas sus necesidades tributarias.</p>
+          </div>
+
+          <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.1s">
+              <h3 class="font-display text-xl font-bold text-primary">Planificación y Estrategia Tributaria</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Desarrolle estrategias tributarias efectivas para minimizar responsabilidades y maximizar la eficiencia financiera.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3 class="service-title">Asesoría Tributaria Especializada</h3>
-                    <p class="service-description">Consultoría experta en planificación fiscal, optimización tributaria y cumplimiento normativo para estructuras empresariales complejas.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="service-title">Auditoría y Control</h3>
-                    <p class="service-description">Auditorías financieras y tributarias integrales con aplicación de estándares internacionales IFRS y normativas locales.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3 class="service-title">Reorganizaciones Empresariales</h3>
-                    <p class="service-description">Asesoría especializada en fusiones, divisiones, absorciones y reestructuraciones societarias con optimización fiscal.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="service-title">Capacitación Ejecutiva</h3>
-                    <p class="service-description">Programas de formación personalizados en materias tributarias para equipos ejecutivos y profesionales.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3 class="service-title">Contabilidad Corporativa</h3>
-                    <p class="service-description">Servicios contables integrales bajo estándares IFRS para sociedades de inversión y control patrimonial.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="service-title">Due Diligence Tributario</h3>
-                    <p class="service-description">Análisis exhaustivo de riesgos fiscales y cumplimiento tributario en procesos de adquisición y inversión.</p>
-                </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.2s">
+              <h3 class="font-display text-xl font-bold text-primary">Cumplimiento y Reportes</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Asegure la presentación precisa y oportuna de declaraciones de impuestos y el cumplimiento de todas las regulaciones.</p>
             </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.3s">
+              <h3 class="font-display text-xl font-bold text-primary">Impuestos Internacionales</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Navegue las complejidades de las leyes tributarias internacionales y optimice su posición fiscal global.</p>
+            </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.4s">
+              <h3 class="font-display text-xl font-bold text-primary">Precios de Transferencia</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Establezca y documente políticas de precios de transferencia que se alineen con sus operaciones comerciales.</p>
+            </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.5s">
+              <h3 class="font-display text-xl font-bold text-primary">Auditorías y Disputas Fiscales</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Represente y apoye a los clientes durante auditorías fiscales y disputas para obtener resultados justos.</p>
+            </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.6s">
+              <h3 class="font-display text-xl font-bold text-primary">Soluciones Tecnológicas Fiscales</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Aproveche la tecnología para agilizar los procesos fiscales, mejorar la precisión y obtener información valiosa.</p>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Team Section -->
-    <section id="equipo" class="team">
-        <div class="container">
+      <!-- Team Section -->
+      <section class="py-24 sm:py-32" id="team">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center fade-in">
+            <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestro Equipo Dedicado</h2>
+            <p class="mx-auto mt-4 max-w-2xl text-subtle-light dark:text-subtle-dark">Un grupo de profesionales talentosos comprometidos con su éxito.</p>
+          </div>
 
-            <div class="section-header">
-                <h2 class="section-title">Nuestro equipo</h2>
-                <p class="section-description">Un equipo multidisciplinario de expertos comprometidos con la excelencia y la innovación en servicios tributarios y contables.</p>
+          <div class="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
+
+            <!--1-->
+            <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/Julia.jpg" alt="Renaldo Palacios" class="w-full h-full ">
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Julia Bustamante</h3>
+              <p class="text-primary">Socia fundadora</p>
             </div>
 
-            <div class="team-grid">
-
-                <div class="team-card" data-linkedin="https://www.linkedin.com/in/carlosarag/">
-                    <div class="team-image">
-
-                         <div class="image-placeholder">
-                            <i class="fas fa-user"></i>
-                            <img src="assets/img/Carlos.png" alt="Carlos Ara">
-                        </div>
-
-                        <div class="team-overlay">
-                            <a href="https://www.linkedin.com/in/carlosarag/" target="_blank" class="linkedin-btn">
-                                <i class="fab fa-linkedin"></i>
-                                Perfil de LinkedIn
-                            </a>    
-                        </div>
-
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">Carlos Ara González</h3>
-                        <p class="team-position">Socio fundador y Gerente Tributario</p>
-                    </div>
-                </div>
-
-                <div class="team-card" data-linkedin="#">
-                    <div class="team-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-user"></i>
-                            <!-- <img src="assets/img/Carlos.png" alt="Carlos Ara"> -->
-                        </div>
-                        <div class="team-overlay">
-                            <button class="linkedin-btn">
-                                <i class="fab fa-linkedin"></i>
-                                Perfil de LinkedIn
-                            </button>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">Julia Bustamante Irrazabal</h3>
-                        <p class="team-position">Socia Fundadora - Gerente General</p>
-                    </div>
-                </div>
-
-                <div class="team-card" data-linkedin="#">
-                    <div class="team-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="team-overlay">
-                            <button class="linkedin-btn">
-                                <i class="fab fa-linkedin"></i>
-                                Perfil de LinkedIn
-                            </button>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">Contador Senior</h3>
-                        <p class="team-position">Especialista en Auditoría</p>
-                    </div>
-                </div>
-
-                <div class="team-card" data-linkedin="#">
-                    <div class="team-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="team-overlay">
-                            <button class="linkedin-btn">
-                                <i class="fab fa-linkedin"></i>
-                                Perfil de LinkedIn
-                            </button>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">Contador Senior</h3>
-                        <p class="team-position">Especialista en Auditoría</p>
-                    </div>
-
-                </div><div class="team-card" data-linkedin="#">
-                    <div class="team-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="team-overlay">
-                            <button class="linkedin-btn">
-                                <i class="fab fa-linkedin"></i>
-                                Perfil de LinkedIn
-                            </button>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">Contador Senior</h3>
-                        <p class="team-position">Especialista en Auditoría</p>
-                    </div>
-                </div>
-
-                <div class="team-card" data-linkedin="#">
-                    <div class="team-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="team-overlay">
-                            <button class="linkedin-btn">
-                                <i class="fab fa-linkedin"></i>
-                                Perfil de LinkedIn
-                            </button>
-                        </div>
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">Consultor Tributario</h3>
-                        <p class="team-position">Especialista en IFRS</p>
-                    </div>
-                </div>
+            <!--2-->
+            <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/charles.jpg" alt="Renaldo Palacios" class="w-full h-full ">
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Carlos Ara</h3>
+              <p class="text-primary">Gerente tributario</p>
             </div>
+
+            <!--3-->
+            <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/vero.jpg" alt="Renaldo Palacios" ">
+                <!-- class="w-full h-full -->
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Veronica Venegas</h3>
+              <p class="text-primary">Gerente de administración y finanzas</p>
+            </div>
+
+            <!--4-->
+            <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/Naty.jpg" alt="Renaldo Palacios" ">
+                <!-- class="w-full h-full -->
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Nataly Zelada</h3>
+              <p class="text-primary">Jefa de contabilidad</p>
+            </div>
+
+            <!--5-->
+            <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/renaldo.jpg" alt="Renaldo Palacios" ">
+                <!-- class="w-full h-full -->
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Renaldo Palacios</h3>
+              <p class="text-primary">Jefe de TI</p>
+            </div>
+            
+            <!--6-->
+            <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/anamaria.jpg" alt="Ana maria" ">
+                <!-- class="w-full h-full -->
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Ana María Acevedo</h3>
+              <p class="text-primary">Analista contable</p>
+            </div>
+
+            <!--7-->
+            <!-- <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/Matias.png" alt="Renaldo Palacios" ">
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Matías Cofré</h3>
+              <p class="text-primary">Analista programador</p>
+            </div> -->
+
+            <!--8-->
+            <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-50 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/paty.jpg" alt="Renaldo Palacios" ">
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Patricia Ferrada</h3>
+              <p class="text-primary">Asistente TI</p>
+            </div>
+
+            <!--8-->
+            <!-- <div class="text-center scale-in" style="transition-delay: 0.1s">
+              <div class="mx-auto h-50 w-48 rounded-lg overflow-hidden shadow-lg bg-surface-light dark:bg-surface-dark">
+                <img src="./assets/img/renaldo.jpg" alt="Renaldo Palacios" ">
+              </div>
+              <h3 class="mt-6 font-bold text-text-light dark:text-text-dark">Renaldo Palacios</h3>
+              <p class="text-primary">Jefe de TI</p>
+            </div> -->
 
         </div>
-    </section>
+      </section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <span class="section-label">Contacto</span>
-                    <h2 class="section-title">Comencemos una Conversación</h2>
-                    <p class="contact-description">Estamos aquí para proporcionar la asesoría tributaria especializada que su empresa necesita. Contáctenos para una consulta personalizada.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Dirección</h4>
-                                <p>Isidora Goyenechea #3250, Oficina 1102<br>Las Condes, Santiago, Chile</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Teléfono</h4>
-                                <p>(+56 2) 2233-3395</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Correo Electrónico</h4>
-                                <p>contacto@araybustamante.cl</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <div class="form-container">
-                        <h3>Solicitar Consulta</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <input type="text" id="nombre" placeholder="Nombre completo" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="empresa" placeholder="Empresa">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="email" placeholder="Correo electrónico" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" id="telefono" placeholder="Teléfono">
-                            </div>
-                            <div class="form-group full-width">
-                                <select id="servicio">
-                                    <option value="">Seleccionar servicio de interés</option>
-                                    <option value="asesoria">Asesoría Tributaria</option>
-                                    <option value="auditoria">Auditoría y Control</option>
-                                    <option value="reorganizacion">Reorganizaciones Empresariales</option>
-                                    <!-- <option value="capacitacion">Capacitación Ejecutiva</option> -->
-                                    <!-- <option value="contabilidad">Contabilidad Corporativa</option> -->
-                                    <!-- <option value="due-diligence">Due Diligence</option> -->
-                                </select>
-                            </div>
-                            <div class="form-group full-width">
-                                <textarea id="mensaje" placeholder="Mensaje o consulta específica" rows="4"></textarea>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-primary" onclick="submitForm()">Enviar consulta</button>
-                    </div>
-                </div>
+      <!-- Contact Section -->
+      <section class="bg-surface-light py-24 dark:bg-surface-dark sm:py-32" id="contact">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
+            <div class="space-y-6 slide-in-left">
+              <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Póngase en Contacto</h2>
+              <p class="text-subtle-light dark:text-subtle-dark">Estamos aquí para ayudar. Contáctenos para una consulta y permítanos manejar sus necesidades tributarias.</p>
+
+              <div class="space-y-4">
+                <p class="flex items-center gap-3">
+                  <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" fill-rule="evenodd"></path>
+                  </svg>
+                   Isidora Goyonechea 3250, piso 11 oficina 1102. 
+                </p>
+
+                <p class="flex items-center gap-3">
+                  <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                  </svg>
+                  (2) 2233 3395
+                </p>
+
+                <p class="flex items-center gap-3">
+                  <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                  </svg>
+                  contacto@araybustamante.cl
+                </p>
+              </div>
             </div>
+
+            <form class="space-y-6 slide-in-right">
+              <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Nombre" type="text"/>
+                <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Correo Electrónico" type="email"/>
+              </div>
+
+              <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Asunto" type="text"/>
+
+              <textarea class="form-textarea w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Mensaje" rows="5"></textarea>
+
+              <button class="form-button w-full sm:w-auto" type="submit">
+                <div class="blob1"></div>
+                <div class="blob2"></div>
+                <div class="inner-form">Enviar Mensaje</div>
+              </button>
+            </form>
+          </div>
         </div>
-    </section>
+      </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Ara y Bustamante Consultores</h4>
-                    <p>Comprometidos con el éxito de nuestros clientes a través de soluciones innovadoras y personalizadas.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Servicios</h4>
-                    <ul>
-                        <li>Asesoría Tributaria</li>
-                        <li>Auditoría y Control</li>
-                        <li>Capacitación</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li>Las Condes, Santiago</li>
-                        <li>(+56 2) 2233-3395</li>
-                        <li>contacto@araybustamante.cl</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Ara y Bustamante Consultores. Todos los derechos reservados.</p>
-            </div>
-        </div>
+    <footer class="bg-background-dark py-12">
+      <div class="container mx-auto px-4 text-center text-subtle-dark">
+        <ul class="example-1" style="margin: 0 auto;">
+          <li class="icon-content">
+            <a
+              href="https://www.linkedin.com/company/capacitaci%C3%B3n-y-asesor%C3%ADas-capas-s--a-/"
+              aria-label="LinkedIn"
+              data-social="linkedin"
+              class="link"
+              target="_blank"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </a>
+            <div class="tooltip">LinkedIn</div>
+          </li>
+          <li class="icon-content">
+            <a
+              href="https://x.com/araybustamantec?lang=es"
+              aria-label="X"
+              data-social="twitter"
+              class="link"
+              target="_blank"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </a>
+            <div class="tooltip">X</div>
+          </li>
+        </ul>
+        <p class="mt-8 text-sm">© 2025 Ara y bustamante consultores. Todos los derechos reservados.</p>
+        <br>
+        <p>Pagina creada por: Matías Ignacio Cofré Rojas</p>
+      </div>
     </footer>
+  </div>
 
-    <script src="main.js"></script>
+  <script>
+    // Intersection Observer para animaciones de scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observar todos los elementos con animaciones
+    document.addEventListener('DOMContentLoaded', () => {
+      // Elementos con animaciones
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const slideLeftElements = document.querySelectorAll('.slide-in-left');
+      const slideRightElements = document.querySelectorAll('.slide-in-right');
+      const scaleElements = document.querySelectorAll('.scale-in');
+      const titleLines = document.querySelectorAll('.title-line');
+
+      // Observar elementos
+      fadeElements.forEach(el => observer.observe(el));
+      slideLeftElements.forEach(el => observer.observe(el));
+      slideRightElements.forEach(el => observer.observe(el));
+      scaleElements.forEach(el => observer.observe(el));
+      titleLines.forEach(el => observer.observe(el));
+
+      // Animación del hero al cargar
+      setTimeout(() => {
+        const heroElements = document.querySelectorAll('#hero-section .fade-in');
+        heroElements.forEach(el => el.classList.add('visible'));
+      }, 100);
+    });
+
+    // Efecto parallax en hero
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateParallax() {
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) {
+        const scrolled = window.scrollY;
+        const parallaxSpeed = 0.5;
+        heroSection.style.backgroundPositionY = `${scrolled * parallaxSpeed}px`;
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+
+    // Animación suave del navbar al scroll
+    let lastScroll = 0;
+    const navbar = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > 100) {
+        navbar.style.backgroundColor = 'rgba(26, 35, 50, 0.95)';
+      } else {
+        navbar.style.backgroundColor = '';
+      }
+
+      lastScroll = currentScroll;
+    });
+  </script>
 </body>
 </html>
