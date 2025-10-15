@@ -562,10 +562,279 @@
       );
       position: absolute;
     }
+
+    /* ========== MODAL STYLES ========== */
+    .service-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .service-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-content {
+      position: relative;
+      background: linear-gradient(135deg, #1a2332 0%, #2c3e50 100%);
+      border-radius: 24px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(201, 169, 110, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .modal-close:hover {
+      background: rgba(201, 169, 110, 0.3);
+      border-color: #c9a96e;
+      transform: rotate(90deg);
+    }
+
+    .modal-header {
+      padding: 40px 40px 20px;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #c9a96e, #b8945d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(201, 169, 110, 0.3);
+    }
+
+    .modal-title {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      flex: 1;
+    }
+
+    .modal-body {
+      padding: 30px 40px;
+    }
+
+    .modal-description,
+    .modal-details,
+    .modal-benefits {
+      margin-bottom: 30px;
+    }
+
+    .modal-body h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #c9a96e;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-body h4::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: linear-gradient(to bottom, #c9a96e, transparent);
+      border-radius: 2px;
+    }
+
+    .modal-body p {
+      color: #94a3b8;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .modal-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .modal-body ul li {
+      color: #f8fafc;
+      padding: 12px 0;
+      padding-left: 30px;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .modal-body ul li:last-child {
+      border-bottom: none;
+    }
+
+    .modal-body ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #c9a96e, #b8945d);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .modal-body ul li:hover {
+      padding-left: 35px;
+      color: #c9a96e;
+    }
+
+    .modal-footer {
+      padding: 20px 40px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .modal-cta {
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #c9a96e, #b8945d);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(201, 169, 110, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(201, 169, 110, 0.5);
+    }
+
+    /* Tarjetas de servicio clicables */
+    .service-card-enhanced {
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card-enhanced::after {
+      content: 'Ver detalles →';
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      color: #c9a96e;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .service-card-enhanced:hover::after {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .service-card-enhanced:active {
+      transform: translateY(-6px) scale(1.01);
+    }
+
+    /* Responsive modal */
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%;
+        max-height: 90vh;
+        border-radius: 16px;
+      }
+
+      .modal-header,
+      .modal-body,
+      .modal-footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .modal-title {
+        font-size: 22px;
+      }
+
+      .modal-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
   </style>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
+
   <div class="relative min-h-screen w-full">
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm shadow-md">
@@ -580,6 +849,8 @@
 
             <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#about">Nosotros</a>
 
+            <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#historia-valores">Historia y Valores</a>
+
             <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#services">Servicios</a>
 
             <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#team">Equipo</a>
@@ -589,7 +860,7 @@
             <a href="https://clientes.araybustamante.cl/client/login/" target="_blank" class="nav-cta">Portal de clientes</a>
           </nav>
 
-          <a class="hidden md:inline-flex nav-cta" href="#contact">Solicitar Cotización</a>
+          <a class="hidden md:inline-flex nav-cta" href="#contact">Contactanos</a>
 
           <button class="md:hidden text-text-light dark:text-text-dark">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -606,9 +877,11 @@
       <section class="relative flex min-h-[60vh] md:min-h-screen items-center justify-center bg-cover bg-fixed bg-center py-20" id="hero-section" style='background-image: linear-gradient(rgba(26, 35, 50, 0.7), rgba(26, 35, 50, 0.7)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0YzPpOwATmNpeeN3CmCYIqy-QFHW96-KfQ_jB4t29XcjZ3_b-exq4-mjicMcyjQ59d33UifgMEhTK60OLC04RXl0gQkiPfQgvXbr5jYvf20H29r6z7d_PzkNs_0IBMB-y5T9EX-tJpe7iY-8ShdQ-fIWy0N10C0ht1AsYSrj0xlgd8V1_k-ZzI7fWLHf_KhddpmTlKdZXM-XrU0mTUiz3lgDvNhL3OmieF3elj5w0euH5MyKcsAjQpsLyVGyn4L0LmAeIEV7svTI")'>
 
         <div class="container mx-auto px-4 text-center text-white">
-          <h1 class="font-display text-4xl font-bold md:text-6xl lg:text-7xl fade-in">Consultoría Tributaria para su Empresa</h1>
+          <h1 class="font-display text-4xl font-bold md:text-6xl lg:text-7xl fade-in">Expertos en consultoria tributaría </h1>
 
-          <p class="mx-auto mt-6 max-w-3xl text-lg text-subtle-dark fade-in" style="transition-delay: 0.2s">Navegue las complejidades de las regulaciones tributarias con confianza. Nuestro equipo de consultores experimentados proporciona soluciones personalizadas para optimizar su estrategia financiera y asegurar el cumplimiento.</p>
+          <p class="mx-auto mt-6 max-w-3xl text-lg text-subtle-dark fade-in" style="transition-delay: 0.2s">En Ara y Bustamante Consultores Ltda., asesoramos a su empresa en la toma de decisiones y el cumplimiento tributario.
+          Combinamos experiencia técnica y conocimiento normativo, entregando soluciones tributarias adaptadas a su realidad empresarial.
+          </p>
 
           <div class="mt-10 flex flex-wrap justify-center gap-4 fade-in" style="transition-delay: 0.4s">
             <a class="animated-button" href="#services">
@@ -649,46 +922,163 @@
         </div>
       </section>
 
-      <!-- Services Section -->
-      <section class="bg-surface-light py-24 dark:bg-surface-dark sm:py-32" id="services">
+      <!-- Historia y Valores Section -->
+      <section class="bg-surface-light py-24 dark:bg-surface-dark sm:py-32" id="historia-valores">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center fade-in">
-            <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestros Servicios</h2>
-            <p class="mx-auto mt-4 max-w-2xl text-subtle-light dark:text-subtle-dark">Ofrecemos un conjunto completo de servicios para satisfacer todas sus necesidades tributarias.</p>
-          </div>
 
-          <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.1s">
-              <h3 class="font-display text-xl font-bold text-primary">Planificación y Estrategia Tributaria</h3>
-              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Desarrolle estrategias tributarias efectivas para minimizar responsabilidades y maximizar la eficiencia financiera.</p>
+          <!-- Nuestra Historia -->
+          <div class="mb-24">
+            <div class="text-center fade-in mb-16">
+              <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestra Historia</h2>
+              <p class="mx-auto mt-4 max-w-3xl text-subtle-light dark:text-subtle-dark leading-relaxed">
+                Ara y Bustamante Consultores Limitada nace del proyecto profesional de Julia Bustamante Irrazabal y Carlos Ara González, quienes fusionan experiencia técnica y metodologías de aprendizaje para ofrecer un servicio personalizado en asesorías tributarias y capacitación.
+                Carlos Ara aporta más de 40 años de trayectoria en tributación. Ex funcionario del Servicio de Impuestos Internos como fiscalizador y Jefe Provincial, desarrolló su carrera en el sector privado como Consultor, Editor y Director Académico en Ediciones Técnicas Tributarias, LexisNexis y Legal Publishing (Thomson Reuters). Ha asesorado procesos de reorganización empresarial y es relator universitario, participando activamente en el análisis de reformas tributarias.
+                Julia Bustamante, Licenciada en Educación y Orientadora en Relaciones Humanas, lidera el equipo humano de A & B y aporta su experticia en metodologías de aprendizaje, asegurando que nuestros clientes comprendan y apliquen efectivamente los conocimientos tributarios.
+                En A & B nos distinguimos por combinar excelencia técnica con un enfoque pedagógico, siendo reconocidos como referentes en materia tributario-contable.
+              </p>
             </div>
 
-            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.2s">
-              <h3 class="font-display text-xl font-bold text-primary">Cumplimiento y Reportes</h3>
-              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Asegure la presentación precisa y oportuna de declaraciones de impuestos y el cumplimiento de todas las regulaciones.</p>
+            <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div class="text-center scale-in" style="transition-delay: 0.1s">
+                <div class="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-4 shadow-lg">
+                  <span class="font-display text-4xl font-bold text-white">40+</span>
+                </div>
+                <h3 class="font-bold text-xl text-text-light dark:text-text-dark mb-2">Años de Experiencia</h3>
+                <p class="text-subtle-light dark:text-subtle-dark">Décadas de expertise en tributación y consultoría empresarial</p>
+              </div>
+
+              <div class="text-center scale-in" style="transition-delay: 0.2s">
+                <div class="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-4 shadow-lg">
+                  <span class="font-display text-4xl font-bold text-white">150+</span>
+                </div>
+                <h3 class="font-bold text-xl text-text-light dark:text-text-dark mb-2">Clientes Satisfechos</h3>
+                <p class="text-subtle-light dark:text-subtle-dark">Empresas que confían en nuestra asesoría profesional</p>
+              </div>
+
+              <div class="text-center scale-in" style="transition-delay: 0.3s">
+                <div class="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-4 shadow-lg">
+                  <span class="font-display text-4xl font-bold text-white">100%</span>
+                </div>
+                <h3 class="font-bold text-xl text-text-light dark:text-text-dark mb-2">Cumplimiento</h3>
+                <p class="text-subtle-light dark:text-subtle-dark">Compromiso total con las obligaciones fiscales de nuestros clientes</p>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Nuestros Valores -->
+          <div>
+            <div class="text-center fade-in mb-16">
+              <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestros Valores</h2>
+              <p class="mx-auto mt-4 max-w-2xl text-subtle-light dark:text-subtle-dark">
+                Los principios que guían nuestro trabajo y definen nuestra relación con cada cliente
+              </p>
             </div>
 
-            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.3s">
-              <h3 class="font-display text-xl font-bold text-primary">Impuestos Internacionales</h3>
-              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Navegue las complejidades de las leyes tributarias internacionales y optimice su posición fiscal global.</p>
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.4s">
-              <h3 class="font-display text-xl font-bold text-primary">Precios de Transferencia</h3>
-              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Establezca y documente políticas de precios de transferencia que se alineen con sus operaciones comerciales.</p>
-            </div>
+              <!-- Valor 1 -->
+              <div class="scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark hover:shadow-xl transition-all duration-300" style="transition-delay: 0.1s">
+                <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-6 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 class="font-display text-xl font-bold text-primary mb-3">Integridad</h3>
+                <p class="text-subtle-light dark:text-subtle-dark">Actuamos con honestidad y transparencia en cada decisión, manteniendo los más altos estándares éticos profesionales.</p>
+              </div>
 
-            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.5s">
-              <h3 class="font-display text-xl font-bold text-primary">Auditorías y Disputas Fiscales</h3>
-              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Represente y apoye a los clientes durante auditorías fiscales y disputas para obtener resultados justos.</p>
-            </div>
+              <!-- Valor 2 -->
+              <div class="scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark hover:shadow-xl transition-all duration-300" style="transition-delay: 0.2s">
+                <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-6 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <h3 class="font-display text-xl font-bold text-primary mb-3">Excelencia</h3>
+                <p class="text-subtle-light dark:text-subtle-dark">Buscamos la perfección en cada servicio, manteniéndonos actualizados con la normativa y las mejores prácticas del sector.</p>
+              </div>
 
-            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.6s">
-              <h3 class="font-display text-xl font-bold text-primary">Soluciones Tecnológicas Fiscales</h3>
-              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Aproveche la tecnología para agilizar los procesos fiscales, mejorar la precisión y obtener información valiosa.</p>
+              <!-- Valor 3 -->
+              <div class="scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark hover:shadow-xl transition-all duration-300" style="transition-delay: 0.3s">
+                <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-6 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 class="font-display text-xl font-bold text-primary mb-3">Seguridad</h3>
+                <p class="text-subtle-light dark:text-subtle-dark">
+                  
+                </p>
+              </div>
+
+              <!-- Valor 4 -->
+              <div class="scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark hover:shadow-xl transition-all duration-300" style="transition-delay: 0.4s">
+                <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-6 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <h3 class="font-display text-xl font-bold text-primary mb-3">Creatividad</h3>
+                <p class="text-subtle-light dark:text-subtle-dark"></p>
+              </div>
+
+              <!-- Valor 5 -->
+              <div class="scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark hover:shadow-xl transition-all duration-300" style="transition-delay: 0.4s">
+                <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center mb-6 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <h3 class="font-display text-xl font-bold text-primary mb-3">Confianza</h3>
+                <p class="text-subtle-light dark:text-subtle-dark"></p>
+              </div>
+
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="py-24 sm:py-32" id="services">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div class="text-center fade-in">
+            <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestros Servicios</h2>
+            <p class="mx-auto mt-4 max-w-2xl text-subtle-light dark:text-subtle-dark">
+              Trabajamos junto a su empresa para construir una gestión de cumplimiento tributario sin riesgos y una sólida gestión financiera.
+            </p>
+          </div>
+
+          <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.1s" onclick="openServiceModal('cumplimiento-tributario')">
+              <h3 class="font-display text-xl font-bold text-primary">Cumplimiento Tributario</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">Gestionamos sus obligaciones fiscales eficientemente y nos encargamos de sus obligaciones ante el SII y organismos fiscalizadores, asegurando el cumplimiento oportuno.</p>
+            </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.2s" onclick="openServiceModal('contabilidad-decisiones')">
+              <h3 class="font-display text-xl font-bold text-primary">Contabilidad para la toma de decisiones tributarias</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark"> A través de nuestro equipo especializado en tributación, administramos y analizamos su información financiera bajo estándares NIIF, garantizando transparencia y control. </p>
+            </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.3s" onclick="openServiceModal('acompanamiento-estrategico')">
+              <h3 class="font-display text-xl font-bold text-primary">Acompañamiento estratégico personalizado</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">
+                Identificamos posibles contingencias tributarias, y trabajamos con especial énfasis en fortalecer la confiabilidad de su información tributaria y contable para brindar asesoría personalizada y continua, con enfoque en resultados y crecimiento sostenible.
+              </p>
+            </div>
+
+            <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.4s" onclick="openServiceModal('capacitacion-ejecutiva')">
+              <h3 class="font-display text-xl font-bold text-primary">Capacitación ejecutiva</h3>
+              <p class="mt-4 text-subtle-light dark:text-subtle-dark">
+                Todas nuestras actividades de capacitación están diseñadas bajo un enfoque pedagógico para un mejor aprendizaje, diseñamos planes a la medida de nuestros clientes. Contamos con modalidades de curso abiertos y cerrados donde todas las temáticas se encuentran conforme a las obligaciones tributarias establecidas por la autoridad.
+              </p>
+            </div>
+
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <!-- Team Section -->
@@ -889,6 +1279,46 @@
     </footer>
   </div>
 
+  <!-- Modal para detalles de servicios -->
+  <div id="serviceModal" class="service-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeServiceModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <h3 id="modalTitle" class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+        <div class="modal-description">
+          <!-- <h4>Descripción del Servicio</h4> -->
+          <p id="modalDescription"></p>
+        </div>
+        <div class="modal-details">
+          <h4>Servicios Técnicos Incluidos</h4>
+          <ul id="modalDetailsList"></ul>
+        </div>
+        <div class="modal-benefits">
+          <!-- <h4>Beneficios Clave</h4> -->
+          <ul id="modalBenefitsList"></ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#contact" class="modal-cta" onclick="closeServiceModal()">Solicitar Consulta</a>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Intersection Observer para animaciones de scroll
     const observerOptions = {
@@ -964,6 +1394,117 @@
 
       lastScroll = currentScroll;
     });
+
+    // ==================== MODAL DE SERVICIOS ====================
+    // Datos técnicos detallados de cada servicio
+    const serviceData = {
+      'cumplimiento-tributario': {
+        title: 'Cumplimiento Tributario',
+        // description: 'Gestionamos integralmente sus obligaciones fiscales, asegurando el cumplimiento normativo y optimizando sus procesos tributarios ante el SII y organismos fiscalizadores.',
+        details: [
+        'Proceso de Declaración de Renta Anual (DDJJ, RLI)',
+        'Proceso de Declaración de Impuestos Mensuales (IVA, PPM)',
+        'Revisión de cumplimiento y auditoría tributaria'
+        ],
+        benefits: [
+
+        ]
+      },
+      'contabilidad-decisiones': {
+        title: 'Contabilidad para la Toma de Decisiones Tributarias',
+        // description: 'Administramos y analizamos su información financiera bajo estándares NIIF, proporcionando información estratégica para optimizar sus decisiones tributarias y financieras.',
+        details: [
+        'Mantenemos el control total de su información financiera',
+        'Registro, análisis y elaboración de estados financieros bajo normas NIIF',
+        'Reportes e informes técnicos precisos, con los respaldos normativos correspondientes'
+        ],
+        benefits: [
+
+        ]
+      },
+      'acompanamiento-estrategico': {
+        title: 'Acompañamiento Estratégico Personalizado',
+        // description: 'Brindamos asesoría continua y personalizada, identificando contingencias tributarias y fortaleciendo la confiabilidad de su información para impulsar el crecimiento sostenible de su negocio.',
+        details: [
+        'Una asesoría continúa adaptada a las necesidades de su negocio',
+        'Asistencia permanente en temas tributarios y contables',
+        'Representación ante fiscalizaciones del Servicio de Impuestos'
+        ],
+        benefits: [
+
+        ]
+      },
+      'capacitacion-ejecutiva': {
+        title: 'Capacitación Ejecutiva',
+        description: 'Desarrollamos programas de capacitación tributaria diseñados bajo un enfoque pedagógico efectivo, con planes personalizados que se adaptan a las necesidades específicas de cada cliente y su equipo.',
+        details: [
+
+        ],
+        benefits: [
+
+        ]
+      }
+    };
+
+    // Función para abrir el modal con información del servicio
+    function openServiceModal(serviceKey) {
+      const modal = document.getElementById('serviceModal');
+      const service = serviceData[serviceKey];
+
+      if (!service) return;
+
+      // Llenar el contenido del modal
+      document.getElementById('modalTitle').textContent = service.title;
+      document.getElementById('modalDescription').textContent = service.description;
+
+      // Llenar la lista de detalles técnicos
+      const detailsList = document.getElementById('modalDetailsList');
+      detailsList.innerHTML = '';
+      service.details.forEach(detail => {
+        const li = document.createElement('li');
+        li.textContent = detail;
+        detailsList.appendChild(li);
+      });
+
+      // Llenar la lista de beneficios
+      const benefitsList = document.getElementById('modalBenefitsList');
+      benefitsList.innerHTML = '';
+      service.benefits.forEach(benefit => {
+        const li = document.createElement('li');
+        li.textContent = benefit;
+        benefitsList.appendChild(li);
+      });
+
+      // Mostrar el modal con animación
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+    }
+
+    // Función para cerrar el modal
+    function closeServiceModal() {
+      const modal = document.getElementById('serviceModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Restaurar scroll del body
+    }
+
+    // Cerrar modal al hacer click en el overlay
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('serviceModal');
+      const overlay = modal.querySelector('.modal-overlay');
+
+      overlay.addEventListener('click', closeServiceModal);
+
+      // Cerrar modal con la tecla ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeServiceModal();
+        }
+      });
+    });
+
+    // Exponer funciones globalmente
+    window.openServiceModal = openServiceModal;
+    window.closeServiceModal = closeServiceModal;
   </script>
 </body>
 </html>
