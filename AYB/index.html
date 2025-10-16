@@ -45,6 +45,13 @@
       font-family: "Inter", sans-serif;
     }
 
+    /* Justificación de textos */
+    p.text-subtle-light,
+    p.text-subtle-dark,
+    p.dark\:text-subtle-dark {
+      text-align: justify;
+    }
+
     /* Animaciones de scroll */
     .fade-in {
       opacity: 0;
@@ -705,6 +712,7 @@
       color: #94a3b8;
       line-height: 1.8;
       font-size: 15px;
+      text-align: justify;
     }
 
     .modal-body ul {
@@ -721,6 +729,7 @@
       line-height: 1.6;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       transition: all 0.3s ease;
+      text-align: justify;
     }
 
     .modal-body ul li:last-child {
@@ -931,10 +940,12 @@
             <div class="text-center fade-in mb-16">
               <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Nuestra Historia</h2>
               <p class="mx-auto mt-4 max-w-3xl text-subtle-light dark:text-subtle-dark leading-relaxed">
-                Ara y Bustamante Consultores Limitada nace del proyecto profesional de Julia Bustamante Irrazabal y Carlos Ara González, quienes fusionan experiencia técnica y metodologías de aprendizaje para ofrecer un servicio personalizado en asesorías tributarias y capacitación.
-                Carlos Ara aporta más de 40 años de trayectoria en tributación. Ex funcionario del Servicio de Impuestos Internos como fiscalizador y Jefe Provincial, desarrolló su carrera en el sector privado como Consultor, Editor y Director Académico en Ediciones Técnicas Tributarias, LexisNexis y Legal Publishing (Thomson Reuters). Ha asesorado procesos de reorganización empresarial y es relator universitario, participando activamente en el análisis de reformas tributarias.
-                Julia Bustamante, Licenciada en Educación y Orientadora en Relaciones Humanas, lidera el equipo humano de A & B y aporta su experticia en metodologías de aprendizaje, asegurando que nuestros clientes comprendan y apliquen efectivamente los conocimientos tributarios.
-                En A & B nos distinguimos por combinar excelencia técnica con un enfoque pedagógico, siendo reconocidos como referentes en materia tributario-contable.
+                Ara y Bustamante Consultores Limitada surge del proyecto profesional de sus socios Julia Bustamante Irrazabal y Carlos Ara González, quienes unen su experiencia y conocimientos
+                para ofrecer soluciones integrales en materia tributaria y contable.
+
+                En A & B Consultores se unen dos visiones complementarias:
+                La trayectoria técnica y tributaria del Sr. Carlos Ara González, profesional con una destacada trayectoria, quien, con más de 40 años de experiencia en la aplicación de las disposiciones tributarias, ha participado en diversos procesos de Reorganización Empresarial, asesorado a empresas de diversos rubros. También forma parte de su recorrido laboral, haber sido funcionario del Servicio de Impuestos, como fiscalizador y Jefe Provincial y luego su paso por reconocidas empresas del sector privado, como consultor, y posteriormente asumiendo el cargo de Jefatura, Editor y Director de Ediciones Técnicas Tributarias, antecesora de Legal Publishing Chile, hoy Thomson Reuters—. Además, ha ejercido como relator en programas de pre y postgrado en diversas universidades, como también ha participado activamente en la difusión de distintos procesos de reforma tributaria entregando sus opiniones en forma escrita y en foros de discusión.
+
               </p>
             </div>
 
@@ -1433,17 +1444,20 @@
         benefits: [
 
         ]
-      },
-      'capacitacion-ejecutiva': {
-        title: 'Capacitación Ejecutiva',
-        description: 'Desarrollamos programas de capacitación tributaria diseñados bajo un enfoque pedagógico efectivo, con planes personalizados que se adaptan a las necesidades específicas de cada cliente y su equipo.',
-        details: [
-
-        ],
-        benefits: [
-
-        ]
       }
+
+      //TODO: Cuando envien los textos faltantes, descomentar
+
+      // 'capacitacion-ejecutiva': {
+      //   title: 'Capacitación Ejecutiva',
+      //   descptirion: 'Todas nuestras actividades de capacitación están diseñadas bajo un enfoque pedagógico para un mejor aprendizaje, diseñamos planes a la medida de nuestros clientes. Contamos con modalidades de curso abiertos y cerrados donde todas las temáticas se encuentran conforme a las obligaciones tributarias establecidas por la autoridad.',
+      //   details: [
+
+      //   ],
+      //   benefits: [
+
+      //   ]
+      // }
     };
 
     // Función para abrir el modal con información del servicio
@@ -1505,6 +1519,7 @@
     // Exponer funciones globalmente
     window.openServiceModal = openServiceModal;
     window.closeServiceModal = closeServiceModal;
+    
   </script>
 </body>
 </html>

@@ -204,6 +204,7 @@ body {
     color: var(--text-secondary);
     margin-bottom: 2.5rem;
     line-height: 1.7;
+    text-align: justify;
 }
 
 .hero-cta {
@@ -372,6 +373,7 @@ body {
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 2rem;
+    text-align: justify;
 }
 
 .leadership-highlights {
@@ -418,6 +420,7 @@ body {
     color: var(--text-secondary);
     line-height: 1.7;
     margin-top: 1rem;
+    text-align: justify;
 }
 
 .services-grid {
@@ -489,6 +492,7 @@ body {
 .service-description {
     color: var(--text-secondary);
     line-height: 1.6;
+    text-align: justify;
 }
 
 /* Team Section */
@@ -613,6 +617,7 @@ body {
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 2.5rem;
+    text-align: justify;
 }
 
 .contact-details {
@@ -643,6 +648,7 @@ body {
 .contact-item p {
     color: var(--text-secondary);
     line-height: 1.5;
+    text-align: justify;
 }
 
 .contact-form {
