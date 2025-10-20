@@ -1186,7 +1186,7 @@
       </section>
 
       <!-- Contact Section -->
-      <section class="bg-surface-light py-24 dark:bg-surface-dark sm:py-32" id="contact">
+      <!-- <section class="bg-surface-light py-24 dark:bg-surface-dark sm:py-32" id="contact">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
             <div class="space-y-6 slide-in-left">
@@ -1218,15 +1218,16 @@
               </div>
             </div>
 
-            <form class="space-y-6 slide-in-right">
+            <form class="space-y-6 slide-in-right" id="contact">
               <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Nombre" type="text"/>
-                <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Correo Electrónico" type="email"/>
+
+                <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Correo Electrónico" type="email" name="email"/>
               </div>
 
-              <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Asunto" type="text"/>
+              <input class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Asunto" type="text" name="asunto"/>
 
-              <textarea class="form-textarea w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Mensaje" rows="5"></textarea>
+              <textarea class="form-textarea w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Mensaje" rows="5" name="mensaje"></textarea>
 
               <button class="form-button w-full sm:w-auto" type="submit">
                 <div class="blob1"></div>
@@ -1236,7 +1237,95 @@
             </form>
           </div>
         </div>
-      </section>
+      </section> -->
+    
+      <section class="bg-surface-light py-24 dark:bg-surface-dark sm:py-32" id="contact">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
+
+          <div class="space-y-6 slide-in-left">
+            <h2 class="font-display text-3xl font-bold text-text-light dark:text-text-dark sm:text-4xl title-line">Póngase en Contacto</h2>
+            <p class="text-subtle-light dark:text-subtle-dark">Estamos aquí para ayudar. Contáctenos para una consulta y permítanos manejar sus necesidades tributarias.</p>
+
+            <div class="space-y-4">
+              <p class="flex items-center gap-3">
+                <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path clip-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" fill-rule="evenodd"></path>
+                </svg>
+                Isidora Goyonechea 3250, piso 11 oficina 1102. 
+              </p>
+
+              <p class="flex items-center gap-3">
+                <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                </svg>
+                (2) 2233 3395
+              </p>
+
+              <p class="flex items-center gap-3">
+                <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                </svg>
+                contacto@araybustamante.cl
+              </p>
+            </div>
+          </div>
+
+          <form class="space-y-6 slide-in-right" action="sendmail.php" method="POST" id="contactForm">
+            <div id="mensajeRespuesta" class="hidden p-4 rounded-lg"></div>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <input 
+                class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Nombre" type="text" name="nombre" required/>
+
+              <input 
+                class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Correo Electrónico" type="email" name="email"required/>
+            </div>
+
+            <input 
+              class="form-input w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Asunto" type="text" name="asunto"required/>
+
+            <textarea 
+              class="form-textarea w-full rounded-lg border-transparent bg-background-light p-4 text-text-light placeholder-subtle-light focus:border-primary focus:ring-primary dark:bg-background-dark dark:text-text-dark dark:placeholder-subtle-dark" placeholder="Su Mensaje" rows="5" name="mensaje" required></textarea>
+
+            <button class="form-button w-full sm:w-auto" type="submit">
+              <div class="blob1"></div>
+              <div class="blob2"></div>
+              <div class="inner-form">Enviar Mensaje</div>
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+      <script>
+      // Mostrar mensajes de éxito o error
+      window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mensajeDiv = document.getElementById('mensajeRespuesta');
+        
+        if (urlParams.get('success') === '1') {
+          mensajeDiv.textContent = '¡Mensaje enviado correctamente! Nos pondremos en contacto pronto.';
+          mensajeDiv.className = 'p-4 rounded-lg bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+          mensajeDiv.classList.remove('hidden');
+          document.getElementById('contactForm').reset();
+        } else if (urlParams.has('error')) {
+          const error = urlParams.get('error');
+          let mensaje = 'Ha ocurrido un error. Por favor, intente nuevamente.';
+          
+          if (error === 'campos_vacios') mensaje = 'Por favor, complete todos los campos.';
+          if (error === 'email_invalido') mensaje = 'Por favor, ingrese un email válido.';
+          if (error === 'envio_fallido') mensaje = 'No se pudo enviar el mensaje. Intente más tarde.';
+          
+          mensajeDiv.textContent = mensaje;
+          mensajeDiv.className = 'p-4 rounded-lg bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+          mensajeDiv.classList.remove('hidden');
+        }
+      });
+      </script>
+    
     </main>
 
     <!-- Footer -->
@@ -1326,7 +1415,6 @@
   </div>
 
   <script>
-    // Intersection Observer para animaciones de scroll
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -1406,7 +1494,6 @@
     const serviceData = {
       'cumplimiento-tributario': {
         title: 'Cumplimiento Tributario',
-        // description: 'Gestionamos integralmente sus obligaciones fiscales, asegurando el cumplimiento normativo y optimizando sus procesos tributarios ante el SII y organismos fiscalizadores.',
         details: [
         'Proceso de Declaración de Renta Anual (DDJJ, RLI)',
         'Proceso de Declaración de Impuestos Mensuales (IVA, PPM)',
@@ -1418,8 +1505,7 @@
       },
       'contabilidad-decisiones': {
         title: 'Contabilidad para la Toma de Decisiones Tributarias',
-        // description: 'Administramos y analizamos su información financiera bajo estándares NIIF, proporcionando información estratégica para optimizar sus decisiones tributarias y financieras.',
-        details: [
+       details: [
         'Mantenemos el control total de su información financiera',
         'Registro, análisis y elaboración de estados financieros bajo normas NIIF',
         'Reportes e informes técnicos precisos, con los respaldos normativos correspondientes'
@@ -1430,7 +1516,6 @@
       },
       'acompanamiento-estrategico': {
         title: 'Acompañamiento Estratégico Personalizado',
-        // description: 'Brindamos asesoría continua y personalizada, identificando contingencias tributarias y fortaleciendo la confiabilidad de su información para impulsar el crecimiento sostenible de su negocio.',
         details: [
         'Una asesoría continúa adaptada a las necesidades de su negocio',
         'Asistencia permanente en temas tributarios y contables',
