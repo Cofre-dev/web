@@ -856,7 +856,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#">Inicio</a>
 
-            <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#about">Nosotros</a>
+            <!-- <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#about">Nosotros</a> -->
 
             <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors" href="#historia-valores">Historia y Valores</a>
 
@@ -888,7 +888,7 @@
         <div class="container mx-auto px-4 text-center text-white">
           <h1 class="font-display text-4xl font-bold md:text-6xl lg:text-7xl fade-in">Expertos en consultoria tributaría </h1>
 
-          <p class="mx-auto mt-6 max-w-3xl text-lg text-subtle-dark fade-in" style="transition-delay: 0.2s">En Ara y Bustamante Consultores Ltda., asesoramos a su empresa en la toma de decisiones y el cumplimiento tributario.
+          <p class="mx-auto mt-6 max-w-3xl text-lg text-subtle-dark fade-in" style="transition-delay: 0.2s">En Ara y Bustamante Consultores Ltda., asesoramos a su empresa en la toma de decisiones y el cumplimiento tributario. <br>
           Combinamos experiencia técnica y conocimiento normativo, entregando soluciones tributarias adaptadas a su realidad empresarial.
           </p>
 
@@ -1086,7 +1086,7 @@
             <div class="service-card-enhanced scale-in rounded-xl bg-background-light p-8 shadow-md dark:bg-background-dark" style="transition-delay: 0.4s" onclick="openServiceModal('capacitacion-ejecutiva')">
               <h3 class="font-display text-xl font-bold text-primary">Capacitación ejecutiva</h3>
               <p class="mt-4 text-subtle-light dark:text-subtle-dark">
-                Todas nuestras actividades de capacitación están diseñadas bajo un enfoque pedagógico para un mejor aprendizaje, diseñamos planes a la medida de nuestros clientes. Contamos con modalidades de curso abiertos y cerrados donde todas las temáticas se encuentran conforme a las obligaciones tributarias establecidas por la autoridad.
+                Todas nuestras actividades de capacitación están diseñadas bajo un enfoque pedagógico para un mejor aprendizaje, diseñamos planes a la medida de nuestros clientes. 
               </p>
             </div>
 
@@ -1524,20 +1524,22 @@
         benefits: [
 
         ]
-      }
+      },
 
       //TODO: Cuando envien los textos faltantes, descomentar
 
-      // 'capacitacion-ejecutiva': {
-      //   title: 'Capacitación Ejecutiva',
-      //   descptirion: 'Todas nuestras actividades de capacitación están diseñadas bajo un enfoque pedagógico para un mejor aprendizaje, diseñamos planes a la medida de nuestros clientes. Contamos con modalidades de curso abiertos y cerrados donde todas las temáticas se encuentran conforme a las obligaciones tributarias establecidas por la autoridad.',
-      //   details: [
+      'capacitacion-ejecutiva': {
+        title: 'Capacitación Ejecutiva',
+        descptirion: 'Todas nuestras actividades de capacitación están diseñadas bajo un enfoque pedagógico para un mejor aprendizaje, diseñamos planes a la medida de nuestros clientes. Contamos con modalidades de curso abiertos y cerrados donde todas las temáticas se encuentran conforme a las obligaciones tributarias establecidas por la autoridad.',
+        details: [
+          'Cursos Abiertos: ',
+          'Cursos Cerrados: ',
+          'Diseño personalizado de cursos cerrados: '
+        ],
+        benefits: [
 
-      //   ],
-      //   benefits: [
-
-      //   ]
-      // }
+        ]
+      }
     };
 
     // Función para abrir el modal con información del servicio
